@@ -1,9 +1,11 @@
 #pragma once
-
+#include "player.h"
 #include "Application.h"
 #include "Renderer2D.h"
+#include "background.h"
 
-class Application2D : public aie::Application {
+class Application2D : public aie::Application
+{
 public:
 
 	Application2D();
@@ -22,5 +24,10 @@ protected:
 	aie::Texture*		m_shipTexture;
 	aie::Font*			m_font;
 
+
 	float m_timer;
+
+	player *player;
+	background *m_background;
+
 };
