@@ -12,17 +12,15 @@ Application2D::~Application2D() {
 
 }
 
-bool Application2D::startup() {
-	
+bool Application2D::startup() { // creates things for the game
+
 	m_2dRenderer = new aie::Renderer2D();
 
-	m_texture = new aie::Texture("../bin/textures/numbered_grid.tga");
-	m_shipTexture = new aie::Texture("../bin/textures/ship.png");
-
-	player = new player();
+	//player = new player();
+	
 	m_background = new background();
 	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
-	
+
 	m_timer = 0;
 
 	return true;
@@ -30,6 +28,7 @@ bool Application2D::startup() {
 
 void Application2D::shutdown() {
 	
+//	delete player;
 	delete m_font;
 	delete m_texture;
 	delete m_shipTexture;
@@ -40,7 +39,7 @@ void Application2D::shutdown() {
 void Application2D::update(float deltaTime) {
 
 	m_timer += deltaTime;
-
+	player->update(deltaTime);
 	// input example
 	aie::Input* input = aie::Input::getInstance();
 
