@@ -8,33 +8,24 @@ class solidObject
 public:
 	solidObject();
 	~solidObject();
-	bool isColliding(solidObject* other);
+	bool isColliding(solidObject* other, solidObject* object2);
 
-//	void setPosition(glm::vec2 position) { m_position = position; }
-//	void setVelocity(glm::vec2 velocity) { m_velocity = velocity; }
-//	void setSize(glm::vec2 size) { m_size = size; }
-//	void setColour(glm::vec4 colour) { m_colour = colour; }
-//
-//
-//	glm::vec2 getPosition() { return m_position; }
-//	glm::vec2 getVelocity() { return m_velocity; }
-//	glm::vec2 getSize() { return m_size; }
-//	glm::vec4 getColour() { return m_colour; }
-
-
+	void setObject(float x, float y, float width, float height, float radius);
+	float getPositionX();
+	float getPositionY();
+	float getWidth();
+	float getHeight();
+	float getRadius();
 protected:
-	glm::vec2 m_position;
-	glm::vec2 m_size;
-	glm::vec2 m_velocity;
-	glm::vec4 m_colour;
 
-	aie::Texture* m_bullet;
-private:
+
+
 	float positionX;
 	float positionY;
-	float width;
-	float height;
-	//bool isAlive();
+	float objectWidth;
+	float objectHeight;
+	float objectRadius;
+private:
 };
 
 

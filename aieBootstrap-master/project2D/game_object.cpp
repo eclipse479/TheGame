@@ -39,7 +39,6 @@ float game_object::get_rotation() const
 
 void game_object::draw(aie::Renderer2D*	a_renderer)
 {
-
 	a_renderer->drawSprite(m_texture, m_positionX, m_positionY, 50, 50, m_rotation, 1);
 }
 

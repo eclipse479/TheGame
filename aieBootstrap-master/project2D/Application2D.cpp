@@ -21,10 +21,13 @@ bool Application2D::startup() { // creates things for the game
 	m_2dRenderer = new aie::Renderer2D();
 
 	m_player = new player();
-	m_STexture = new aie::Texture("../bin/textures/ship.png");
-	ship = new game_object(m_STexture);
+	m_player->setObject(200, 360, 50, 50, 50);
+
+	//m_STexture = new aie::Texture("../bin/textures/ship.png");
+
+	/*ship = new game_object(m_STexture);
 	ship->set_position(200, 200);
-	ship->set_rotation(1.7f);
+	ship->set_rotation(1.7f);*/
 
 	m_background = new background();
 	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
@@ -52,7 +55,7 @@ void Application2D::update(float deltaTime)
 	// input example
 	aie::Input* input = aie::Input::getInstance();
 
-	float shipX = ship->get_positionX();
+	/*float shipX = ship->get_positionX();
 	float shipY = ship->get_positionY();
 	float ship_rot = ship->get_rotation();
 	float temp_speed = 100.0f;
@@ -74,7 +77,7 @@ void Application2D::update(float deltaTime)
 		ship_rot -= 3.14159f * deltaTime;
 
 	ship->set_position(shipX, shipY);
-	ship->set_rotation(ship_rot);
+	ship->set_rotation(ship_rot);*/
 	m_background->update(deltaTime);
 
 	m_button->update();
@@ -103,7 +106,7 @@ void Application2D::draw() {
 	//draw the player
 	m_player->draw(m_2dRenderer);
 
-	ship->draw(m_2dRenderer);
+	//ship->draw(m_2dRenderer);
 	// output some text, uses the last used colour
 	char fps[32];
 	sprintf_s(fps, 32, "FPS: %i", getFPS());
