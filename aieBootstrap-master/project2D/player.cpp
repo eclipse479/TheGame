@@ -19,36 +19,27 @@ player::~player()
 void player::update(float deltaTime) {
 	aie::Input* input = aie::Input::getInstance();
 	if (input->isKeyDown(aie::INPUT_KEY_UP) && positionY >= 720 - (playerH / 2))
-	{
-	}
+	{	}
 	else if (input->isKeyDown(aie::INPUT_KEY_UP)) {
 		positionY += 300.0f * deltaTime;
-
-
 	}
 
 	if (input->isKeyDown(aie::INPUT_KEY_DOWN) && positionY <= 0 + (playerH / 2))
-	{
-	}
+	{}
 	else if (input->isKeyDown(aie::INPUT_KEY_DOWN)) {
 		positionY -= 300.0f * deltaTime;
-
 	}
 
 	if (input->isKeyDown(aie::INPUT_KEY_LEFT) && positionX <= 0 + (playerW / 2))
-	{
-	}
+	{	}
 	else if (input->isKeyDown(aie::INPUT_KEY_LEFT)) {
 		positionX -= 300.0f * deltaTime;
-
 	}
 
 	if (input->isKeyDown(aie::INPUT_KEY_RIGHT) && positionX >= 1280 - (playerW / 2))
-	{
-	}
+	{	}
 	else if (input->isKeyDown(aie::INPUT_KEY_RIGHT)) {
 		positionX += 300.0f * deltaTime;
-
 	}
 
 	//if (input->isKeyDown(aie::INPUT_KEY_DOWN) && input->isKeyDown(aie::INPUT_KEY_RIGHT))
