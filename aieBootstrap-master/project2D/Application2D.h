@@ -4,6 +4,7 @@
 #include "Renderer2D.h"
 #include "game_object.h"
 #include "background.h"
+#include "button.h"
 
 class Application2D : public aie::Application
 {
@@ -27,8 +28,8 @@ protected:
 	aie::Texture*		m_STexture;
 
 	float m_timer;
-	game_object *ship;
-	player *m_player;
-	background *m_background;
-
+	game_object*	 ship;
+	player*		 	 m_player;
+	background*		 m_background;
+	button*			 m_button;
 };
