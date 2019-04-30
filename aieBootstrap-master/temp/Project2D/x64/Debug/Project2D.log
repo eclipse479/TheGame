@@ -1,7 +1,7 @@
 ﻿  Application2D.cpp
   button.cpp
-c:\users\s191188\source\repos\thegame\aiebootstrap-master\project2d\application2d.h(35): error C2143: syntax error: missing ';' before '*'
-c:\users\s191188\source\repos\thegame\aiebootstrap-master\project2d\application2d.h(35): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\s191188\source\repos\thegame\aiebootstrap-master\project2d\application2d.h(35): error C2238: unexpected token(s) preceding ';'
+  game_object.cpp
   main.cpp
   Generating Code...
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Project2D.vcxproj -> C:\Users\s191188\source\repos\TheGame\aieBootstrap-master\temp\Project2D\x64\Debug\Project2D.exe

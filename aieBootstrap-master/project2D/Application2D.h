@@ -1,11 +1,12 @@
 #pragma once
-#include "player.h"
 #include "Application.h"
 #include "Renderer2D.h"
-#include "game_object.h"
-#include "background.h"
-#include "button.h"
 #include <iostream>
+
+class game_object;
+class button;
+class player;
+class background;
 
 class Application2D : public aie::Application
 {

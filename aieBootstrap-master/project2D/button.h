@@ -4,6 +4,7 @@
 #include <cstring>
 #include "Renderer2D.h"
 #include "Application2D.h"
+#include "Input.h"
 class button
 {
 public:
@@ -38,5 +39,8 @@ private:
 	float right;
 	float top;
 	float bottom;
+
+	int mouseX;
+	int mouseY;
 };
 

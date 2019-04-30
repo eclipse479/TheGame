@@ -1,5 +1,6 @@
 #pragma once
 #include "Renderer2D.h"
+#include "Application2D.h"
 namespace aie
 {
 	class Texture;
