@@ -23,6 +23,11 @@ button::button(const char* buttonText, float x, float y, float width, float heig
 	textHeight = m_font->getStringHeight(m_buttonText);
 	centredPosX = m_posX - (textWidth * 0.5f) + 2;
 	centredPosY = m_posY - (textHeight * 0.5f) + 5;
+
+	left = m_posX - (m_width * 0.5f);
+	right = m_posX + (m_width * 0.5f);
+	bottom = m_posY - (m_height * 0.5f); 
+	top = m_posY + (m_height * 0.5f);
 }
 
 
@@ -37,4 +42,19 @@ void button::draw(aie::Renderer2D* renderer)
 	renderer->drawBox(m_posX, m_posY, m_width, m_height);
 	renderer->setRenderColour(1.0f, 1.0f, 1.0f, 1.0f);
 	renderer->drawText(m_font, m_buttonText, centredPosX, centredPosY);
+}
+
+bool button::update()
+{
+	aie::Input* input = aie::Input::getInstance();
+	//Get mouse position
+	int mouseX = input->getMouseX();
+	int mouseY = input->getMouseY();
+
+	if(mouseX > left && mouseX < right &&mouseY > bottom && mouseY < top) {
+		//Return whether the mouse button is clicked while colliding
+		return input->wasMouseButtonPressed(aie::INPUT_MOUSE_BUTTON_LEFT);
+	}
+	return false;
+
 }

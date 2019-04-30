@@ -73,6 +73,12 @@ void Application2D::update(float deltaTime)
 	ship->set_position(shipX, shipY);
 	ship->set_rotation(ship_rot);
 	m_background->update(deltaTime);
+
+	m_button->update();
+	if (m_button->update()) {
+		
+	//Replace this with whatever the button should do.
+		std::cout <<"Button clicked"<<std::endl;}
 	// exit the application
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
 		quit();

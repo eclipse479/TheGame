@@ -5,6 +5,7 @@
 #include "game_object.h"
 #include "background.h"
 #include "button.h"
+#include <iostream>
 
 class Application2D : public aie::Application
 {

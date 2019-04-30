@@ -1,6 +1,9 @@
 #pragma once
 #include"Renderer2D.h"
 #include"Font.h"
+#include <cstring>
+#include "Renderer2D.h"
+#include "Application2D.h"
 class button
 {
 public:
@@ -8,7 +11,7 @@ public:
 	~button();
 
 
-
+	bool update();
 
 	void draw(aie::Renderer2D* renderer);
 
@@ -30,5 +33,10 @@ private:
 	float textHeight;
 	float centredPosX;
 	float centredPosY;
+
+	float left;
+	float right;
+	float top;
+	float bottom;
 };
 
