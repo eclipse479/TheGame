@@ -7,10 +7,11 @@ button::button(const char* buttonText, float x, float y, float width, float heig
 	//Store the text that will appear on the button.
 	strcpy_s(m_buttonText, 64, buttonText);
 	//Load a font to use to display the text.
-	m_font = new aie::Font("./font/consolas.ttf", 24);
+	m_font = new aie::Font("../bin/font/consolas.ttf", 24);
 	//Store the button's position, width, and height.
 	m_posX = x;
 	m_posY = y;
+
 	m_width = width;
 	m_height = height;
 
