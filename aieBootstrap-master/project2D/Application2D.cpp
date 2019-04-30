@@ -3,6 +3,7 @@
 #include "Font.h"
 #include "Input.h"
 
+//#define PI = 3.14159f
 
 Application2D::Application2D() {
 
@@ -16,8 +17,12 @@ bool Application2D::startup() { // creates things for the game
 
 	m_2dRenderer = new aie::Renderer2D();
 
-	//player = new player();
-	
+	m_player = new player();
+	m_STexture = new aie::Texture("../bin/textures/ship.png");
+	ship = new game_object(m_STexture);
+	ship->set_position(200, 200);
+	ship->set_rotation(1.7f);
+
 	m_background = new background();
 	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
 
@@ -26,42 +31,44 @@ bool Application2D::startup() { // creates things for the game
 	return true;
 }
 
-void Application2D::shutdown() {
-	
-//	delete player;
+void Application2D::shutdown() 
+{	
+	delete m_player;
 	delete m_font;
-	delete m_texture;
-	delete m_shipTexture;
 	delete m_2dRenderer;
 	delete m_background;
 }
 
-void Application2D::update(float deltaTime) {
-
+void Application2D::update(float deltaTime) 
+{
 	m_timer += deltaTime;
-	player->update(deltaTime);
+	m_player->update(deltaTime);
 	// input example
 	aie::Input* input = aie::Input::getInstance();
 
-	// Update the camera position using the arrow keys
-	float camPosX;
-	float camPosY;
-	m_2dRenderer->getCameraPos(camPosX, camPosY);
+	float shipX = ship->get_positionX();
+	float shipY = ship->get_positionY();
+	float ship_rot = ship->get_rotation();
+	float temp_speed = 100.0f;
 
 	if (input->isKeyDown(aie::INPUT_KEY_UP))
-		camPosY += 500.0f * deltaTime;
-
+	{
+		shipX += cos(-ship_rot - 3.14159f * 0.5f) * temp_speed * deltaTime;
+		shipY += -sin(-ship_rot - 3.14159f * 0.5f) * temp_speed * deltaTime;
+	}
 	if (input->isKeyDown(aie::INPUT_KEY_DOWN))
-		camPosY -= 500.0f * deltaTime;
-
+	{
+		shipX -= cos(-ship_rot - 3.14159f * 0.5f) * temp_speed * deltaTime;
+		shipY -= -sin(-ship_rot - 3.14159f * 0.5f) * temp_speed * deltaTime;
+	}
 	if (input->isKeyDown(aie::INPUT_KEY_LEFT))
-		camPosX -= 500.0f * deltaTime;
+		ship_rot += 3.14159f * deltaTime;
 
 	if (input->isKeyDown(aie::INPUT_KEY_RIGHT))
-		camPosX += 500.0f * deltaTime;
+		ship_rot -= 3.14159f * deltaTime;
 
-	m_2dRenderer->setCameraPos(camPosX, camPosY);
-
+	ship->set_position(shipX, shipY);
+	ship->set_rotation(ship_rot);
 	m_background->update(deltaTime);
 	// exit the application
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
@@ -79,6 +86,9 @@ void Application2D::draw() {
 	//Draw the background
 	m_background->draw(m_2dRenderer);
 	
+	//draw the player
+	m_player->draw(m_2dRenderer);
+	ship->draw(m_2dRenderer);
 	// output some text, uses the last used colour
 	char fps[32];
 	sprintf_s(fps, 32, "FPS: %i", getFPS());
