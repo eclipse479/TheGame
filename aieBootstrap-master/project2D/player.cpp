@@ -1,17 +1,18 @@
 #include "player.h"
-
+#include<iostream>
 
 
 player::player()
 {
 	m_shipTexture = new aie::Texture("../bin/textures/ship.png"); // gets the ship texture/sprite
-
+	m_playerBullet = new aie::Texture("../bin/textures/playerBullet.png"); // gets the texture for the player''s bullets
 }
 
 
 player::~player()
 {
 	delete m_shipTexture;
+	delete m_playerBullet;
 }
 
 
@@ -51,7 +52,7 @@ void player::update(float deltaTime) {
 	//rotation = 3*PI / 4;
 	//if (input->isKeyDown(aie::INPUT_KEY_UP) && input->isKeyDown(aie::INPUT_KEY_LEFT))
 	//rotation = PI / 4;
-
+	shooting_timer--;
 
 }
 
@@ -64,8 +65,13 @@ void player::draw(aie::Renderer2D*	m_2dRenderer)
 	m_2dRenderer->setRenderColour(1, 1, 1, 1);
 }
 
-
-void player::shoot()
+void player::setshootingTimer(int timer)
 {
-
+	shooting_timer = timer;
 }
+
+int player::shootingTimer()
+{
+	return shooting_timer;
+}
+	

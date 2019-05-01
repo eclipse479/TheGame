@@ -100,8 +100,6 @@ void background::draw(aie::Renderer2D*	m_2dRenderer)
 }
 
 
-
-
 int background::getMenu()
 {
 	return menu;

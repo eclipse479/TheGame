@@ -29,13 +29,13 @@ protected:
 	aie::Renderer2D*	m_2dRenderer;
 	aie::Texture*		m_texture;
 	aie::Texture*		m_shipTexture;
+	aie::Texture*       m_playerBullet;
 	aie::Font*			m_font;
-	
 
 	float m_timer;
 	game_object*	 ship;
 	player*		 	 m_player;
 	background*		 m_background;
 	button*			 m_button;
-	rock* m_rock;
+	rock*			 m_rock;
 };

@@ -14,12 +14,13 @@ public:
 
 
 	virtual void update(float deltaTime);
-	virtual void draw(aie::Renderer2D*	m_2dRenderer);
+	virtual void draw(aie::Renderer2D* m_2dRenderer);
 
-	void shoot();
-
+	void setshootingTimer(int timer);
+	int shootingTimer();
 protected:
 	aie::Texture* m_shipTexture;
+	aie::Texture* m_playerBullet;
 
 private:
 	//float positionX = 640;//starting X pos
@@ -29,6 +30,6 @@ private:
 	float rotation = -3.14159f / 2; //radians
 	float PI = 3.14159f; // value of Pi -> to find angles
 	float m_speed;
-	float shooting_timer;
+	int shooting_timer;
 };
 

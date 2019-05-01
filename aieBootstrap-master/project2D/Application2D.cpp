@@ -29,7 +29,8 @@ bool Application2D::startup() { // creates things for the game
 	m_background = new background();
 	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
 
-	
+	m_playerBullet = new aie::Texture("../bin/textures/playerBullet.png");
+
 	m_timer = 0;
 
 	return true;
@@ -42,6 +43,7 @@ void Application2D::shutdown()
 	delete m_2dRenderer;
 	delete m_background;
 	delete m_rock;
+	delete m_playerBullet;
 }
 
 bool Application2D::isColliding(solidObject* object1, solidObject* object2)
@@ -59,6 +61,19 @@ bool Application2D::isColliding(solidObject* object1, solidObject* object2)
 	}
 }
 
+void playerShoot(aie::Renderer2D* m_2dRenderer, player* player)
+{
+	aie::Input* input = aie::Input::getInstance();
+	if (input->isKeyDown(aie::INPUT_KEY_SPACE) && player->shootingTimer() < 0)
+	{
+		m_2dRenderer->setRenderColour(0, 1, 0, 1);
+		m_2dRenderer->drawCircle(player->getPositionX(), player->getPositionY(), 100, 0);
+		player->setshootingTimer(50);
+		std::cout << "shot fired\n";
+	}
+	std::cout << player->shootingTimer() << std::endl;
+}
+
 void Application2D::update(float deltaTime) 
 {
 	// input example
@@ -69,8 +84,7 @@ void Application2D::update(float deltaTime)
 		m_player->update(deltaTime);
 		m_timer += deltaTime;
 	}
-	
-
+	playerShoot(m_2dRenderer, m_player);
 	
 	// exit the application
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
