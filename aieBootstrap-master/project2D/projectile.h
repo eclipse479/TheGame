@@ -11,7 +11,8 @@ public:
 	projectile();
 	~projectile();
 
-	void playerShoot(aie::Renderer2D*	m_2dRenderer);
+	//void playerShoot(aie::Renderer2D*	m_2dRenderer);
+
 protected:
 	aie::Texture* m_enemyBullet;
 	aie::Texture* m_playerBullet;

@@ -84,7 +84,7 @@ void Application2D::update(float deltaTime)
 		m_player->update(deltaTime);
 		m_timer += deltaTime;
 	}
-	playerShoot(m_2dRenderer, m_player);
+	//playerShoot(m_2dRenderer, m_player);
 	
 	// exit the application
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))

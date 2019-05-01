@@ -19,7 +19,7 @@ player::~player()
 //updating the player+boarder control
 void player::update(float deltaTime) {
 	aie::Input* input = aie::Input::getInstance();
-	m_speed = 150;
+	m_speed = 200;
 	if (input->isKeyDown(aie::INPUT_KEY_UP) && positionY >= 720 - (objectHeight / 2))
 	{	}
 	else if (input->isKeyDown(aie::INPUT_KEY_UP)) {
@@ -44,14 +44,14 @@ void player::update(float deltaTime) {
 		positionX += m_speed * deltaTime;
 	}
 
-	//if (input->isKeyDown(aie::INPUT_KEY_DOWN) && input->isKeyDown(aie::INPUT_KEY_RIGHT))
-	//rotation = -3*PI/4;
-	//if (input->isKeyDown(aie::INPUT_KEY_UP) && input->isKeyDown(aie::INPUT_KEY_RIGHT))
-	//rotation = -PI / 4;
-	//if (input->isKeyDown(aie::INPUT_KEY_DOWN) && input->isKeyDown(aie::INPUT_KEY_LEFT))
-	//rotation = 3*PI / 4;
-	//if (input->isKeyDown(aie::INPUT_KEY_UP) && input->isKeyDown(aie::INPUT_KEY_LEFT))
-	//rotation = PI / 4;
+	if (input->isKeyDown(aie::INPUT_KEY_SPACE) && shooting_timer < 0)
+	{
+
+		shooting_timer = 50;
+		std::cout << "shot fired\n";
+	}
+
+
 	shooting_timer--;
 
 }
