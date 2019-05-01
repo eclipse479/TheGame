@@ -60,6 +60,8 @@ void player::draw(aie::Renderer2D*	m_2dRenderer)
 	aie::Input* input = aie::Input::getInstance();
 	//position and draw the ship
 	m_2dRenderer->setUVRect(0, 0, 1.0f, 1.0f);
-	m_2dRenderer->drawSprite(m_shipTexture, positionX, positionY, objectWidth, objectHeight, rotation, 1);
+	m_2dRenderer->drawSprite(m_shipTexture, positionX, positionY, objectWidth, objectHeight, rotation, 10);
 	m_2dRenderer->setRenderColour(1, 1, 1, 1);
 }
+
+

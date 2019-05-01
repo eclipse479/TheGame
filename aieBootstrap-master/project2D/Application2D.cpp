@@ -3,7 +3,7 @@
 #include "Font.h"
 #include "Input.h"
 #include "game_object.h"
-#include "button.h"
+//#include "button.h"
 #include "background.h"
 #include "player.h"
 
@@ -32,8 +32,7 @@ bool Application2D::startup() { // creates things for the game
 	m_background = new background();
 	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
 
-	m_button = new button("Play",640,210,150,100,1.0f,0.0f,0.0f);
-
+	
 	m_timer = 0;
 
 	return true;
@@ -45,7 +44,6 @@ void Application2D::shutdown()
 	delete m_font;
 	delete m_2dRenderer;
 	delete m_background;
-	delete m_button;
 }
 
 void Application2D::update(float deltaTime) 
@@ -80,11 +78,7 @@ void Application2D::update(float deltaTime)
 	ship->set_rotation(ship_rot);*/
 	m_background->update(deltaTime);
 
-	m_button->update();
-	if (m_button->update()) {	
-	//Replace this with whatever the button should do.
-		std::cout <<"Button clicked"<<std::endl;
-	}
+	
 	// exit the application
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
 		quit();
@@ -101,8 +95,7 @@ void Application2D::draw() {
 	//Draw the background
 	m_background->draw(m_2dRenderer);
 	
-	//draw the button
-	m_button->draw(m_2dRenderer);
+	
 	//draw the player
 	m_player->draw(m_2dRenderer);
 

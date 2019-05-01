@@ -28,5 +28,6 @@ private:
 	float rotation = -3.14159f / 2; //radians
 	float PI = 3.14159f; // value of Pi -> to find angles
 	float m_speed;
+	float shooting_timer;
 };
 
