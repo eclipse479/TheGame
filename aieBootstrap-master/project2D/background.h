@@ -12,7 +12,7 @@ public:
 
 	virtual void draw(aie::Renderer2D*	m_2dRenderer);
 
-
+	int getMenu();
 
 protected:
 

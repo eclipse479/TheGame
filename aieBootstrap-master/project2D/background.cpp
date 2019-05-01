@@ -91,4 +91,9 @@ void background::draw(aie::Renderer2D*	m_2dRenderer)
 			menu = 1;
 		}
 	}
+
 }
+	int background::getMenu()
+	{
+		return menu;
+	}

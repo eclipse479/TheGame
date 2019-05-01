@@ -48,35 +48,15 @@ void Application2D::shutdown()
 
 void Application2D::update(float deltaTime) 
 {
-	m_timer += deltaTime;
-	m_player->update(deltaTime);
 	// input example
 	aie::Input* input = aie::Input::getInstance();
-
-	/*float shipX = ship->get_positionX();
-	float shipY = ship->get_positionY();
-	float ship_rot = ship->get_rotation();
-	float temp_speed = 100.0f;
-
-	if (input->isKeyDown(aie::INPUT_KEY_UP))
+	if (m_background->getMenu() == 2)
 	{
-		shipX += cos(-ship_rot - 3.14159f * 0.5f) * temp_speed * deltaTime;
-		shipY += -sin(-ship_rot - 3.14159f * 0.5f) * temp_speed * deltaTime;
+		m_background->update(deltaTime);
+		m_player->update(deltaTime);
+		m_timer += deltaTime;
 	}
-	if (input->isKeyDown(aie::INPUT_KEY_DOWN))
-	{
-		shipX -= cos(-ship_rot - 3.14159f * 0.5f) * temp_speed * deltaTime;
-		shipY -= -sin(-ship_rot - 3.14159f * 0.5f) * temp_speed * deltaTime;
-	}
-	if (input->isKeyDown(aie::INPUT_KEY_LEFT))
-		ship_rot += 3.14159f * deltaTime;
-
-	if (input->isKeyDown(aie::INPUT_KEY_RIGHT))
-		ship_rot -= 3.14159f * deltaTime;
-
-	ship->set_position(shipX, shipY);
-	ship->set_rotation(ship_rot);*/
-	m_background->update(deltaTime);
+	
 
 	
 	// exit the application
@@ -91,6 +71,7 @@ void Application2D::draw() {
 
 	// begin drawing sprites
 	m_2dRenderer->begin();
+
 
 	//Draw the background
 	m_background->draw(m_2dRenderer);
