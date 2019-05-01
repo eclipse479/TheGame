@@ -177,6 +177,7 @@
     <ClCompile Include="game_object.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="rock.cpp" />
     <ClCompile Include="solidObject.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +186,7 @@
     <ClInclude Include="button.h" />
     <ClInclude Include="game_object.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="rock.h" />
     <ClInclude Include="solidObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -50,22 +50,14 @@ float solidObject::getRadius()
 }
 
 
-bool solidObject::isColliding(solidObject* object1, solidObject* object2)
-{
-	float distance =
-		sqrt((object1->getPositionX() - object2->getPositionX())*(object1->getPositionX() - object2->getPositionX()) +
-		(object1->getPositionY() - object2->getPositionY())*(object1->getPositionY() - object2->getPositionY()));
-	if (distance < (object1->getRadius() + object2->getRadius()))
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
 
-//put the below code into the update() of application 2D to get a ship
+		//put this text in the startUp()
+//m_STexture = new aie::Texture("../bin/textures/ship.png");
+//ship = new game_object(m_STexture);
+//ship->set_position(200, 200);
+//ship->set_rotation(1.7f);
+
+		//put the below code into the update() of application 2D to get a ship
 /*float shipX = ship->get_positionX();
 	float shipY = ship->get_positionY();
 	float ship_rot = ship->get_rotation();
@@ -89,3 +81,9 @@ bool solidObject::isColliding(solidObject* object1, solidObject* object2)
 
 	ship->set_position(shipX, shipY);
 	ship->set_rotation(ship_rot);*/
+
+			//put this in the draw()
+//ship->draw(m_2dRenderer);
+
+			// this goes in the Application2D header in the protected section
+// aie::Texture*	m_STexture;

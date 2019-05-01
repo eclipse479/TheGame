@@ -2,10 +2,10 @@
 #include "Texture.h"
 #include "Font.h"
 #include "Input.h"
-#include "game_object.h"
-//#include "button.h"
+#include "solidObject.h"
 #include "background.h"
 #include "player.h"
+#include "rock.h"
 
 
 Application2D::Application2D() {
@@ -21,13 +21,10 @@ bool Application2D::startup() { // creates things for the game
 	m_2dRenderer = new aie::Renderer2D();
 
 	m_player = new player();
-	m_player->setObject(200, 360, 50, 50, 50);
-
-	//m_STexture = new aie::Texture("../bin/textures/ship.png");
-
-	/*ship = new game_object(m_STexture);
-	ship->set_position(200, 200);
-	ship->set_rotation(1.7f);*/
+	m_player->setObject(200, 360, 50, 50, 25);
+	
+	m_rock = new rock();
+	m_rock->setObject(300, 300, 50, 50, 30);
 
 	m_background = new background();
 	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
@@ -72,15 +69,22 @@ void Application2D::draw() {
 	// begin drawing sprites
 	m_2dRenderer->begin();
 
-
 	//Draw the background
 	m_background->draw(m_2dRenderer);
-	
-	
+
 	//draw the player
 	m_player->draw(m_2dRenderer);
+	m_2dRenderer->setRenderColour(1, 0, 0);
+	m_2dRenderer->drawCircle(m_player->getPositionX(), m_player->getPositionY(), m_player->getRadius(),20);
 
-	//ship->draw(m_2dRenderer);
+	m_2dRenderer->setRenderColour(0, 0, 1);
+	m_2dRenderer->drawCircle(m_rock->getPositionX(), m_rock->getPositionY(), m_rock->getRadius(), 20);
+
+	if (isColliding(m_player, m_rock))
+	{
+		std::cout << "collision\n";
+	}
+
 	// output some text, uses the last used colour
 	char fps[32];
 	sprintf_s(fps, 32, "FPS: %i", getFPS());
@@ -89,4 +93,19 @@ void Application2D::draw() {
 
 	// done drawing sprites
 	m_2dRenderer->end();
+}
+
+bool Application2D::isColliding(solidObject* object1, solidObject* object2)
+{
+	float distance =
+		sqrt((object1->getPositionX() - object2->getPositionX())*(object1->getPositionX() - object2->getPositionX()) +
+		(object1->getPositionY() - object2->getPositionY())*(object1->getPositionY() - object2->getPositionY()));
+	if (distance < (object1->getRadius() + object2->getRadius()))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }

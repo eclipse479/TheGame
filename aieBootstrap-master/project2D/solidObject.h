@@ -8,7 +8,7 @@ class solidObject
 public:
 	solidObject();
 	~solidObject();
-	bool isColliding(solidObject* other, solidObject* object2);
+	
 
 	void setObject(float x, float y, float width, float height, float radius);
 	float getPositionX();
