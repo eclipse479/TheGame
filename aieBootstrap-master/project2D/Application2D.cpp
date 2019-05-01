@@ -41,6 +41,7 @@ void Application2D::shutdown()
 	delete m_font;
 	delete m_2dRenderer;
 	delete m_background;
+	delete m_rock;
 }
 
 void Application2D::update(float deltaTime) 
