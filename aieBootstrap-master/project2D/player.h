@@ -3,6 +3,7 @@
 #include "Renderer2D.h"
 #include "Texture.h"
 #include "solidObject.h"
+#include "projectile.h"
 class player :	public solidObject
 {
 public:
@@ -15,7 +16,7 @@ public:
 	virtual void update(float deltaTime);
 	virtual void draw(aie::Renderer2D*	m_2dRenderer);
 
-	
+	void shoot();
 
 protected:
 	aie::Texture* m_shipTexture;

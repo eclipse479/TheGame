@@ -65,3 +65,7 @@ void player::draw(aie::Renderer2D*	m_2dRenderer)
 }
 
 
+void player::shoot()
+{
+
+}

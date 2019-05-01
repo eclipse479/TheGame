@@ -44,6 +44,21 @@ void Application2D::shutdown()
 	delete m_rock;
 }
 
+bool Application2D::isColliding(solidObject* object1, solidObject* object2)
+{
+	float distance =
+		sqrt((object1->getPositionX() - object2->getPositionX())*(object1->getPositionX() - object2->getPositionX()) +
+		(object1->getPositionY() - object2->getPositionY())*(object1->getPositionY() - object2->getPositionY()));
+	if (distance < (object1->getRadius() + object2->getRadius()))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 void Application2D::update(float deltaTime) 
 {
 	// input example
@@ -88,25 +103,11 @@ void Application2D::draw() {
 
 	// output some text, uses the last used colour
 	char fps[32];
+	m_2dRenderer->setRenderColour(1, 1, 1, 1);
 	sprintf_s(fps, 32, "FPS: %i", getFPS());
 	m_2dRenderer->drawText(m_font, fps, 0, 720 - 32);
 	m_2dRenderer->drawText(m_font, "Press ESC to quit!", 0, 720 - 64);
 
 	// done drawing sprites
 	m_2dRenderer->end();
-}
-
-bool Application2D::isColliding(solidObject* object1, solidObject* object2)
-{
-	float distance =
-		sqrt((object1->getPositionX() - object2->getPositionX())*(object1->getPositionX() - object2->getPositionX()) +
-		(object1->getPositionY() - object2->getPositionY())*(object1->getPositionY() - object2->getPositionY()));
-	if (distance < (object1->getRadius() + object2->getRadius()))
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
 }
