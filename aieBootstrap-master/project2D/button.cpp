@@ -1,5 +1,4 @@
 #include "button.h"
-#include <cstring>
 
 button::button(const char* buttonText, float x, float y, float width, float height, float red, float green, float blue)
 {

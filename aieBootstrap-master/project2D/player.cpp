@@ -49,7 +49,6 @@ void player::update(float deltaTime) {
 	}
 
 	shooting_timer--;
-	std::cout << shooting_timer << std::endl;
 }
 
 void player::setShooting(bool setshooting)

@@ -7,6 +7,7 @@
 #include "player.h"
 #include "rock.h"
 #include "projectile.h"
+#include "score.h"
 
 
 
@@ -30,6 +31,9 @@ bool Application2D::startup() { // creates things for the game
 
 	m_background = new background();
 	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
+
+	m_score = new score();
+	m_score->scoreStartup();
 
 
 	p_bullet = new projectile();
@@ -78,7 +82,7 @@ void Application2D::update(float deltaTime)
 		m_background->update(deltaTime);
 		m_player->update(deltaTime);
 		m_timer += deltaTime;
-
+		m_score->scoreBoard(m_2dRenderer);
 		if (m_player->isShooting() && m_player->shootingTimer()<0)
 		{
 			m_player->setShooting(false);
