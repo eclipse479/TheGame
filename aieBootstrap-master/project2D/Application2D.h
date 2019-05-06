@@ -9,6 +9,8 @@ class player;
 class background;
 class rock;
 class solidObject;
+class score;
+class projectile;
 
 class Application2D : public aie::Application
 {
@@ -38,4 +40,6 @@ protected:
 	background*		 m_background;
 	button*			 m_button;
 	rock*			 m_rock;
+	score*           m_score;
+	projectile*      p_bullet;
 };

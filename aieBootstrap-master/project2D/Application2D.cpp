@@ -6,6 +6,8 @@
 #include "background.h"
 #include "player.h"
 #include "rock.h"
+#include "projectile.h"
+
 
 
 Application2D::Application2D() {
@@ -29,10 +31,9 @@ bool Application2D::startup() { // creates things for the game
 	m_background = new background();
 	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
 
-	m_playerBullet = new aie::Texture("../bin/textures/playerBullet.png");
 
+	p_bullet = new projectile();
 	m_timer = 0;
-
 	return true;
 }
 
@@ -43,7 +44,7 @@ void Application2D::shutdown()
 	delete m_2dRenderer;
 	delete m_background;
 	delete m_rock;
-	delete m_playerBullet;
+	delete p_bullet;
 }
 
 bool Application2D::isColliding(solidObject* object1, solidObject* object2)
@@ -64,13 +65,7 @@ bool Application2D::isColliding(solidObject* object1, solidObject* object2)
 void playerShoot(aie::Renderer2D* m_2dRenderer, player* player)
 {
 	aie::Input* input = aie::Input::getInstance();
-	if (input->isKeyDown(aie::INPUT_KEY_SPACE) && player->shootingTimer() < 0)
-	{
-		m_2dRenderer->setRenderColour(0, 1, 0, 1);
-		m_2dRenderer->drawCircle(player->getPositionX(), player->getPositionY(), 100, 0);
-		player->setshootingTimer(50);
-		std::cout << "shot fired\n";
-	}
+	
 	std::cout << player->shootingTimer() << std::endl;
 }
 
@@ -83,9 +78,17 @@ void Application2D::update(float deltaTime)
 		m_background->update(deltaTime);
 		m_player->update(deltaTime);
 		m_timer += deltaTime;
+
+		if (m_player->isShooting() && m_player->shootingTimer()<0)
+		{
+			m_player->setShooting(false);
+			m_player->setshootingTimer(50);
+			std::cout << "shot fired\n";
+			m_player->setObject(200, 360, 50, 50, 25);
+		}
 	}
-	//playerShoot(m_2dRenderer, m_player);
 	
+	//playerShoot(m_2dRenderer, m_player);
 	// exit the application
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
 		quit();

@@ -15,13 +15,41 @@ projectile::~projectile()
 	delete m_playerBullet;
 }
 
-//void projectile::playerShoot(aie::Renderer2D*	m_2dRenderer)
-//{
-//	aie::Input* input = aie::Input::getInstance();
-//	if (input->isKeyDown(aie::INPUT_KEY_SPACE) && playerBullet_timer < 0)
-//	{
-//		m_2dRenderer->drawSprite(m_playerBullet, 500, 500, 20, 20);
-//		playerBullet_timer = 50;
-//	}
-//	playerBullet_timer--;
-//}
+void projectile::setBullettype(int Type)
+{
+	bulletType = Type;
+}
+
+
+int projectile::getBulletType()
+{
+	return bulletType;
+}
+
+void projectile::bullet_update(float deltaTime)
+{
+	if (bulletType == 1)
+	{
+		positionX += deltaTime*100;
+	}
+	else if (bulletType == 2)
+	{
+		positionX -= deltaTime * 100;
+	}
+	if (positionX < -20 || positionX > 1300)
+	{
+	
+	}
+}
+
+
+void projectile::createBullet(float posX, float posY, float radius, int bType, aie::Texture* const a_texture)
+{
+	positionX = posX;
+	positionY = posY;
+	objectRadius = radius;
+	bulletType = bType;
+
+
+}
+

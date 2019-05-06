@@ -2,8 +2,12 @@
 #include <iostream>
 
 
-score::score()
+score::score(const char* buttonText, float x, float y)
 {
+	m_font = new aie::Font("../bin/font/consolas.ttf", 24);
+	strcpy_s(m_buttonText, 64, buttonText);
+	m_posX = x;
+	m_posY = y;
 }
 
 
@@ -13,16 +17,15 @@ score::~score()
 
 void score::scoreUpdate()
 {
-
 }
 
 void score::scoreBoard() 
 {
-	Scores thescore; //create -> user score
-	thescore.score = 0; //assign
-	Scores highScore;//create
-	highScore.score = 100656;//assign
-	Scores holdScore; // holds the numbers + create
+	scoreStorage currentScore; //create -> user score
+	currentScore.score = 0; //assign
+	scoreStorage highScore;//create
+	highScore.score = 10000;//assign
+	scoreStorage holdScore; // holds the numbers + create
 	//-------------------------------------------------DEFINING THE NUMBERS----------------------------------------------------
 
 	std::fstream fout; // opens a stream for reading
@@ -37,7 +40,7 @@ void score::scoreBoard()
 		if (fout.good()) //if the file opens
 		{
 			//--------------------------------------------- WRITING TO A FILE-------------------------------------------------------
-			fout.write((char*)&highScore, sizeof(Scores)); // write the numbers into the file
+			fout.write((char*)&highScore, sizeof(scoreStorage)); // write the numbers into the file
 			fout.close(); // close the file
 		}
 	}
@@ -49,27 +52,27 @@ void score::scoreBoard()
 	{
 		for (int i = 0; i < 1 && !fin.eof() && fin.peek() != EOF; i++) // makes sure the number copied does not go past what is there
 		{
-			fin.read((char*)&holdScore, sizeof(Scores)); // reads the numbers form the file
+			fin.read((char*)&holdScore, sizeof(scoreStorage)); // reads the numbers form the file
 		}
 	}
 
-	if (thescore.score >= holdScore.score) // if the current score is bigger than the high score
+	if (currentScore.score >= holdScore.score) // if the current score is bigger than the high score
 	{
-		highScore.score = thescore.score;
+		highScore.score = currentScore.score;
 		fout.open("score.dat", std::ios::out | std::ios::binary); //creates the files
 		if (fout.good()) //if the file opens
 		{
 			//--------------------------------------------- WRITING TO A FILE-------------------------------------------------------
-			fout.write((char*)&thescore, sizeof(Scores)); // write the numbers into the file
+			fout.write((char*)&currentScore, sizeof(scoreStorage)); // write the numbers into the file
 		}
 		for (int i = 0; i < 1 && !fin.eof() && fin.peek() != EOF; i++) // makes sure the number copied does not go past what is there
 		{
 			//-------------------------------------------WRITING THE NUMBERS FROM THE FILE---------------------------------------------
-			fin.read((char*)&holdScore, sizeof(Scores)); // reads the numbers form the file
+			fin.read((char*)&holdScore, sizeof(scoreStorage)); // reads the numbers form the file
 		}
 		fout.close();//close the file
 	}
-	std::cout << thescore.score << " thescore\n";
+	std::cout << currentScore.score << " thescore\n";
 	std::cout << holdScore.score << " holdScore\n";
 	std::cout << highScore.score << " highScore\n";
 }

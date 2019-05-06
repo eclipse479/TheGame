@@ -1,16 +1,18 @@
 #pragma once
 #include <iostream>
 #include <fstream>
+#include"Font.h"
+#include <cstring>
 class score
 {
 public:
-	score();
+	score(const char* buttonText, float x, float y);
 	~score();
 
 	void scoreBoard();
 	void scoreUpdate();
 private:
-	struct Scores
+	struct scoreStorage
 	{
 		int score;
 		void print()
@@ -18,5 +20,11 @@ private:
 			std::cout << score << "\n";
 		}
 	};
+	aie::Font* m_font;
+	char m_buttonText[64];
+
+	float m_posX;
+	float m_posY;
+
 };
 

@@ -1,4 +1,5 @@
 #pragma once
+#include "Application.h"
 #include "Input.h"
 #include "Renderer2D.h"
 #include "Texture.h"
@@ -18,18 +19,17 @@ public:
 
 	void setshootingTimer(int timer);
 	int shootingTimer();
+	bool isShooting();
+	void setShooting(bool setshooting);
 protected:
 	aie::Texture* m_shipTexture;
 	aie::Texture* m_playerBullet;
-
+	aie::Renderer2D*	m_2dRenderer;
 private:
-	//float positionX = 640;//starting X pos
-	//float positionY = 360; // starting Y pos
-	//float objectWidth = 50; // player width
-	//float objectHeight = 50; // player height
 	float rotation = -3.14159f / 2; //radians
 	float PI = 3.14159f; // value of Pi -> to find angles
 	float m_speed;
 	int shooting_timer;
+	bool shooting = false;
 };
 

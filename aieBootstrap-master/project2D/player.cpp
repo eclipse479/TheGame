@@ -5,14 +5,13 @@
 player::player()
 {
 	m_shipTexture = new aie::Texture("../bin/textures/ship.png"); // gets the ship texture/sprite
-	m_playerBullet = new aie::Texture("../bin/textures/playerBullet.png"); // gets the texture for the player''s bullets
 }
 
 
 player::~player()
 {
 	delete m_shipTexture;
-	delete m_playerBullet;
+
 }
 
 
@@ -46,14 +45,21 @@ void player::update(float deltaTime) {
 
 	if (input->isKeyDown(aie::INPUT_KEY_SPACE) && shooting_timer < 0)
 	{
-
-		shooting_timer = 50;
-		std::cout << "shot fired\n";
+		shooting = true;
 	}
 
-
 	shooting_timer--;
+	std::cout << shooting_timer << std::endl;
+}
 
+void player::setShooting(bool setshooting)
+{
+	shooting = setshooting;
+}
+
+bool player::isShooting()
+{
+	return shooting;
 }
 
 void player::draw(aie::Renderer2D*	m_2dRenderer)
