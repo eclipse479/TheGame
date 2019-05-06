@@ -8,7 +8,7 @@
 #include "rock.h"
 #include "projectile.h"
 #include "score.h"
-
+#include "enemyShip.h"
 
 
 Application2D::Application2D() {
@@ -23,30 +23,43 @@ bool Application2D::startup() { // creates things for the game
 
 	m_2dRenderer = new aie::Renderer2D();
 
+	m_shipTexture = new aie::Texture("../bin/textures/ship.png"); // gets the ship texture/sprite
+	m_enemyBullet = new aie::Texture("../bin/textures/enemyBullet.png"); // gets the texture for the enemies bullets
+	m_playerBullet = new aie::Texture("../bin/textures/playerBullet.png"); // gets the texture for the player''s bullets
+	the_background = new aie::Texture("../bin/textures/background.png"); // texture for the background
+
+	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
+
+
 	m_player = new player();
-	m_player->setObject(200, 360, 50, 50, 25);
+	m_player->setObject(200, 360, 50, 50, 25,m_shipTexture, (-3.1415 / 2));
 	
 	m_rock = new rock();
-	m_rock->setObject(300, 300, 50, 50, 30);
+	m_rock->setObject(300, 300, 50, 50, 30,m_enemyBullet,0);
 
 	m_background = new background();
-	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
 
 	m_score = new score();
 	m_score->scoreStartup();
 
 
 	p_bullet = new projectile();
+	p_bullet->setObject(100, 100, 10, 10, 10, m_playerBullet,0);
 	m_timer = 0;
 	return true;
 }
 
 void Application2D::shutdown() 
 {	
-	delete m_player;
-	delete m_font;
 	delete m_2dRenderer;
+	delete m_player;
+	delete m_shipTexture;
+	delete m_playerBullet;
+	delete m_enemyBullet;
 	delete m_background;
+	delete the_background;
+	delete m_score;
+	delete m_font;
 	delete m_rock;
 	delete p_bullet;
 }
@@ -78,18 +91,18 @@ void Application2D::update(float deltaTime)
 		m_player->update(deltaTime);
 		m_timer += deltaTime;
 		m_score->scoreBoard(m_2dRenderer);
+		p_bullet->player_bullet_update(deltaTime);
 
 			if (m_player->isShooting() && m_player->shootingTimer()<0)
 			{
 				m_player->setShooting(false);
 				m_player->setshootingTimer(50);
 				std::cout << "shot fired\n";
-				m_player->setObject(200, 360, 50, 50, 25);
+				p_bullet->setObject(m_player->getPositionX(), m_player->getPositionY(), 10, 10, 10, m_playerBullet);
 				m_score->scoreUpdate(25000);
 			}
 	}
 	
-	//playerShoot(m_2dRenderer, m_player);
 	// exit the application
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
 		quit();
@@ -104,7 +117,7 @@ void Application2D::draw() {
 	m_2dRenderer->begin();
 
 	//Draw the background
-	m_background->draw(m_2dRenderer);
+	m_background->draw(m_2dRenderer, the_background);
 
 	//draw the player
 	m_player->draw(m_2dRenderer);
@@ -114,9 +127,13 @@ void Application2D::draw() {
 	m_2dRenderer->setRenderColour(0, 0, 1);
 	m_2dRenderer->drawCircle(m_rock->getPositionX(), m_rock->getPositionY(), m_rock->getRadius(), 20);
 
+	m_2dRenderer->setRenderColour(0, 1, 0);
+	m_2dRenderer->drawCircle(p_bullet->getPositionX(), p_bullet->getPositionY(), p_bullet->getRadius(), 5);
+
 	if (isColliding(m_player, m_rock))
 	{
 		std::cout << "collision\n";
+		m_score->scoreUpdate(-100);
 	}
 
 	// output some text, uses the last used colour

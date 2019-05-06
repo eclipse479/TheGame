@@ -73,9 +73,6 @@ void score::scoreBoard(aie::Renderer2D* renderer)
 		}
 		fout.close();
 	}
-	std::cout << currentScore << " thescore\n";
-	std::cout << highScore << " highScore\n";
-
 }
 
 void score::writeScore(aie::Renderer2D* renderer)

@@ -45,6 +45,9 @@
     <ClCompile Include="score.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="enemyShip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application2D.h">
@@ -72,6 +75,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="score.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="enemyShip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

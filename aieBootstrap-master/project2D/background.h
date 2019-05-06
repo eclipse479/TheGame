@@ -10,13 +10,11 @@ public:
 	~background();
 	virtual void update(float deltaTime);
 
-	virtual void draw(aie::Renderer2D*	m_2dRenderer);
+	virtual void draw(aie::Renderer2D*	m_2dRenderer, aie::Texture * texture);
 
 	int getMenu();
 
 protected:
-
-	aie::Texture* m_background;
 	button* play_button;
 	button* options_button;
 	button* menu_button;

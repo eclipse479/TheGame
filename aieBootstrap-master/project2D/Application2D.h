@@ -11,6 +11,7 @@ class rock;
 class solidObject;
 class score;
 class projectile;
+class enemyShip;
 
 class Application2D : public aie::Application
 {
@@ -32,6 +33,8 @@ protected:
 	aie::Texture*		m_texture;
 	aie::Texture*		m_shipTexture;
 	aie::Texture*       m_playerBullet;
+	aie::Texture*       m_enemyBullet;
+	aie::Texture*       the_background;
 	aie::Font*			m_font;
 
 	float m_timer;
@@ -42,4 +45,5 @@ protected:
 	rock*			 m_rock;
 	score*           m_score;
 	projectile*      p_bullet;
+	enemyShip*       enemy;
 };

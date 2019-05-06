@@ -5,7 +5,6 @@
 
 background::background()
 {
-	m_background = new aie::Texture("../bin/textures/background.png");
 	play_button = new button("PLAY",320,360,150,100,0,0.7f,0);
 	options_button = new button("CONTROLS", 960, 360, 150, 100, 1, 0, 0);
 	menu_button = new button("MAIN MENU", 640, 180, 150, 100, 0, 0, 1);
@@ -14,7 +13,6 @@ background::background()
 
 background::~background()
 {
-	delete m_background;
 	delete play_button;
 	delete menu_font;
 	delete menu_button;
@@ -32,7 +30,7 @@ void background::update(float deltaTime)
 		posX2 = 1920;
 }
 
-void background::draw(aie::Renderer2D*	m_2dRenderer)
+void background::draw(aie::Renderer2D*	m_2dRenderer, aie::Texture * texture)
 {
 	aie::Input* input = aie::Input::getInstance();
 		float textWidth = menu_font->getStringWidth(m_menuText);
@@ -70,8 +68,8 @@ void background::draw(aie::Renderer2D*	m_2dRenderer)
 	else if (menu == 2) //game 
 	{//draws the moving background
 		m_2dRenderer->setUVRect(0, 0, 1.0f, 1.0f);
-		m_2dRenderer->drawSprite(m_background, posX, 360, 1300, 720, 0, 100);
-		m_2dRenderer->drawSprite(m_background, posX2, 360, 1300, 720, 0, 100);
+		m_2dRenderer->drawSprite(texture, posX, 360, 1300, 720, 0, 100);
+		m_2dRenderer->drawSprite(texture, posX2, 360, 1300, 720, 0, 100);
 	}
 
 	else if (menu == 3) // the options/how to play menu
