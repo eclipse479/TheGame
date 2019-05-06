@@ -25,7 +25,7 @@ int projectile::getBulletType()
 
 void projectile::player_bullet_update(float deltaTime)
 {
-		positionX += deltaTime*100;
+		positionX += deltaTime*300;
 }
 
 

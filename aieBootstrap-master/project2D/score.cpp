@@ -4,7 +4,7 @@
 
 score::score()
 {
-	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
+	m_font = new aie::Font("../bin/font/ARCADE.ttf", 32);
 }
 
 

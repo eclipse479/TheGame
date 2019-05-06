@@ -25,17 +25,17 @@ bool Application2D::startup() { // creates things for the game
 
 	m_shipTexture = new aie::Texture("../bin/textures/ship.png"); // gets the ship texture/sprite
 	m_enemyBullet = new aie::Texture("../bin/textures/enemyBullet.png"); // gets the texture for the enemies bullets
-	m_playerBullet = new aie::Texture("../bin/textures/playerBullet.png"); // gets the texture for the player''s bullets
+	m_playerBullet = new aie::Texture("../bin/textures/playerProjectile.png"); // gets the texture for the player''s bullets
 	the_background = new aie::Texture("../bin/textures/background.png"); // texture for the background
 
-	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
+	m_font = new aie::Font("../bin/font/ARCADE.ttf", 32);
 
 
 	m_player = new player();
 	m_player->setObject(200, 360, 50, 50, 25,m_shipTexture, (-3.1415 / 2));
 	
 	m_rock = new rock();
-	m_rock->setObject(300, 300, 50, 50, 30,m_enemyBullet,0);
+	m_rock->setObject(300, 300, 50, 50, 30,m_enemyBullet);
 
 	m_background = new background();
 
@@ -44,7 +44,7 @@ bool Application2D::startup() { // creates things for the game
 
 
 	p_bullet = new projectile();
-	p_bullet->setObject(100, 100, 10, 10, 10, m_playerBullet,0);
+	p_bullet->setObject(100, 100, 35, 35, 10, m_playerBullet);
 	m_timer = 0;
 	return true;
 }
@@ -98,7 +98,7 @@ void Application2D::update(float deltaTime)
 				m_player->setShooting(false);
 				m_player->setshootingTimer(50);
 				std::cout << "shot fired\n";
-				p_bullet->setObject(m_player->getPositionX(), m_player->getPositionY(), 10, 10, 10, m_playerBullet);
+				p_bullet->setObject(m_player->getPositionX(), m_player->getPositionY(), 40, 40, 12, m_playerBullet);
 				m_score->scoreUpdate(25000);
 			}
 	}
@@ -121,6 +121,7 @@ void Application2D::draw() {
 
 	//draw the player
 	m_player->draw(m_2dRenderer);
+	p_bullet->draw(m_2dRenderer);
 	m_2dRenderer->setRenderColour(1, 0, 0);
 	m_2dRenderer->drawCircle(m_player->getPositionX(), m_player->getPositionY(), m_player->getRadius(),20);
 
@@ -128,7 +129,7 @@ void Application2D::draw() {
 	m_2dRenderer->drawCircle(m_rock->getPositionX(), m_rock->getPositionY(), m_rock->getRadius(), 20);
 
 	m_2dRenderer->setRenderColour(0, 1, 0);
-	m_2dRenderer->drawCircle(p_bullet->getPositionX(), p_bullet->getPositionY(), p_bullet->getRadius(), 5);
+	m_2dRenderer->drawCircle(p_bullet->getPositionX(), p_bullet->getPositionY(), p_bullet->getRadius(), 10);
 
 	if (isColliding(m_player, m_rock))
 	{
@@ -137,12 +138,14 @@ void Application2D::draw() {
 	}
 
 	// output some text, uses the last used colour
-	char fps[32];
-	m_2dRenderer->setRenderColour(1, 1, 1, 1);
-	sprintf_s(fps, 32, "FPS: %i", getFPS());
-	m_2dRenderer->drawText(m_font, fps, 0, 720 - 32);
-	m_2dRenderer->drawText(m_font, "Press ESC to quit!", 0, 720 - 64);
-	m_score->writeScore(m_2dRenderer);
+	if (m_background->getMenu() == 2) {
+		char fps[32];
+		m_2dRenderer->setRenderColour(1, 1, 1, 1);
+		sprintf_s(fps, 32, "FPS: %i", getFPS());
+		m_2dRenderer->drawText(m_font, fps, 0, 720 - 32);
+		m_2dRenderer->drawText(m_font, "Press ESC to quit!", 0, 720 - 64);
+		m_score->writeScore(m_2dRenderer);
+	}
 	// done drawing sprites
 	m_2dRenderer->end();
 }

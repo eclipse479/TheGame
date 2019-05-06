@@ -26,7 +26,7 @@ protected:
 	float objectWidth;
 	float objectHeight;
 	float objectRadius;
-	float objectRotation;
+	float objectRotation = 0;
 private:
 };
 
