@@ -11,18 +11,19 @@ public:
 	~score();
 
 	void scoreBoard(aie::Renderer2D* renderer);
-
+	int getScore();
+	int getHighScore();
 	void scoreStartup();
 	void scoreUpdate(int points);
+	
+	void writeScore(aie::Renderer2D* renderer);
 private:
 	aie::Font* m_font;
 	char m_buttonText[64];
 
 		int currentScore = 0;
 		int highScore = 100000;
-		char currentScoreText[64];
-		char highScoreText[64];
-
+		char scoring[50];
 	float m_posX;
 	float m_posY;
 

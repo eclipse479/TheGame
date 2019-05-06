@@ -66,12 +66,7 @@ bool Application2D::isColliding(solidObject* object1, solidObject* object2)
 	}
 }
 
-void playerShoot(aie::Renderer2D* m_2dRenderer, player* player)
-{
-	aie::Input* input = aie::Input::getInstance();
-	
-	std::cout << player->shootingTimer() << std::endl;
-}
+
 
 void Application2D::update(float deltaTime) 
 {
@@ -83,13 +78,15 @@ void Application2D::update(float deltaTime)
 		m_player->update(deltaTime);
 		m_timer += deltaTime;
 		m_score->scoreBoard(m_2dRenderer);
-		if (m_player->isShooting() && m_player->shootingTimer()<0)
-		{
-			m_player->setShooting(false);
-			m_player->setshootingTimer(50);
-			std::cout << "shot fired\n";
-			m_player->setObject(200, 360, 50, 50, 25);
-		}
+
+			if (m_player->isShooting() && m_player->shootingTimer()<0)
+			{
+				m_player->setShooting(false);
+				m_player->setshootingTimer(50);
+				std::cout << "shot fired\n";
+				m_player->setObject(200, 360, 50, 50, 25);
+				m_score->scoreUpdate(25000);
+			}
 	}
 	
 	//playerShoot(m_2dRenderer, m_player);
@@ -128,7 +125,7 @@ void Application2D::draw() {
 	sprintf_s(fps, 32, "FPS: %i", getFPS());
 	m_2dRenderer->drawText(m_font, fps, 0, 720 - 32);
 	m_2dRenderer->drawText(m_font, "Press ESC to quit!", 0, 720 - 64);
-
+	m_score->writeScore(m_2dRenderer);
 	// done drawing sprites
 	m_2dRenderer->end();
 }

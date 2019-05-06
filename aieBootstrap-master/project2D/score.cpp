@@ -4,18 +4,29 @@
 
 score::score()
 {
-
+	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
 }
 
 
 score::~score()
 {
+	delete m_font;
 }
 
 void score::scoreUpdate(int points)
 {
 	currentScore += points;
 
+}
+
+int score::getScore()
+{
+	return currentScore;
+}
+
+int score::getHighScore()
+{
+	return highScore;
 }
 
 void score::scoreStartup()
@@ -65,10 +76,15 @@ void score::scoreBoard(aie::Renderer2D* renderer)
 	std::cout << currentScore << " thescore\n";
 	std::cout << highScore << " highScore\n";
 
+}
 
-	//strcpy_s(currentScoreText, 64, currentScore);
-	/*renderer->setRenderColour(1.0f, 1.0f, 1.0f, 1.0f);
-	renderer->drawText(m_font, currentScoreText, 200, 600);
+void score::writeScore(aie::Renderer2D* renderer)
+{
+	renderer->setRenderColour(1, 1, 1);
+	sprintf_s(scoring, 32, "SCORE: %i", getScore());
+	renderer->drawText(m_font, scoring, 500, 720 - 32,90);
 
-	renderer->drawText(m_font, highScoreText, 500, 600);*/
+	renderer->setRenderColour(1, 1, 1);
+	sprintf_s(scoring, 32, "HIGH SCORE: %i", getHighScore());
+	renderer->drawText(m_font, scoring, 800, 720 - 32,90);
 }
