@@ -20,7 +20,7 @@ public:
 	void draw(aie::Renderer2D*	m_2dRenderer);
 
 protected:
-	aie::Texture* textureHold = nullptr;
+	aie::Texture* objectTexture = nullptr;
 	float positionX;
 	float positionY;
 	float objectWidth;

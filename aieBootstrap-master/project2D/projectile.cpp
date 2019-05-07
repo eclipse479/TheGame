@@ -4,7 +4,6 @@
 
 projectile::projectile()
 {
-	
 }
 
 
@@ -29,13 +28,5 @@ void projectile::player_bullet_update(float deltaTime)
 }
 
 
-void projectile::createBullet(float posX, float posY, float radius, int bType, aie::Texture* const a_texture)
-{
-	positionX = posX;
-	positionY = posY;
-	objectRadius = radius;
-	bulletType = bType;
 
-
-}
 

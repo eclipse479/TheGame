@@ -179,7 +179,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="projectile.cpp" />
-    <ClCompile Include="rock.cpp" />
     <ClCompile Include="score.cpp" />
     <ClCompile Include="solidObject.cpp" />
   </ItemGroup>
@@ -192,7 +191,6 @@
     <ClInclude Include="linkedList.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="projectile.h" />
-    <ClInclude Include="rock.h" />
     <ClInclude Include="score.h" />
     <ClInclude Include="solidObject.h" />
   </ItemGroup>

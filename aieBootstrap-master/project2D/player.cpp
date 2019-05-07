@@ -67,4 +67,13 @@ int player::shootingTimer()
 {
 	return shooting_timer;
 }
-	
+
+void player::addHealth(int add)
+{
+	health = +add;
+}
+
+int player::getHealth()
+{
+	return health;
+}

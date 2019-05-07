@@ -3,14 +3,19 @@
 #include "Texture.h"
 #include "Renderer2D.h"
 #include "Input.h"
-class enemyShip :
-	public solidObject
+class enemyShip : public solidObject
 {
 public:
 	enemyShip();
-	~enemyShip();
-	void draw(aie::Renderer2D*	m_2dRenderer);
-protected:
-	aie::Texture* m_shipEnemy;
-};
 
+	~enemyShip();
+
+	void setSpawnTimer(int timer);
+	int getSpwanTimer();
+	void setShootingTimer(int timer);
+	void update();
+	bool spawnEnemy();
+private:
+	int spawn_timer = 50;
+	int shooting_timer = 166;
+};

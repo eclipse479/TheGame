@@ -16,7 +16,8 @@ public:
 	int shootingTimer();
 	bool isShooting();
 	void setShooting(bool setshooting);
-
+	void addHealth(int add);
+	int getHealth();
 protected:
 	aie::Renderer2D*	m_2dRenderer;
 private:
@@ -25,5 +26,6 @@ private:
 	float m_speed;
 	int shooting_timer;
 	bool shooting = false;
+	int health = 5000;
 };
 

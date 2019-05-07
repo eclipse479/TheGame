@@ -7,13 +7,11 @@
 
 class player;
 
-class projectile :
-	public solidObject
+class projectile :	public solidObject
 {
 public:
 	projectile();
 	~projectile();
-	void createBullet(float posX, float posY, float radius, int bType, aie::Texture* const a_texture);
 	void setBullettype(int bulletType);
 	int getBulletType();
 	void player_bullet_update(float deltaTime);

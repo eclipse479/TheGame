@@ -2,13 +2,13 @@
 #include "Application.h"
 #include "Renderer2D.h"
 #include "linkedList.h"
+#include <list>
 #include <iostream>
 
 class game_object;
 class button;
 class player;
 class background;
-class rock;
 class solidObject;
 class score;
 class projectile;
@@ -33,9 +33,10 @@ protected:
 	aie::Renderer2D*	m_2dRenderer;
 	aie::Texture*		m_texture;
 	aie::Texture*		m_shipTexture;
-	aie::Texture*       m_playerBullet;
-	aie::Texture*       m_enemyBullet;
+	aie::Texture*       m_playerBulletSprite;
+	aie::Texture*       m_enemyBulletSprite;
 	aie::Texture*       the_background;
+	aie::Texture*       enemySprite;
 	aie::Font*			m_font;
 
 	float m_timer;
@@ -43,9 +44,8 @@ protected:
 	player*		 	 m_player;
 	background*		 m_background;
 	button*			 m_button;
-	rock*			 m_rock;
 	score*           m_score;
 	projectile*      p_bullet;
 	enemyShip*       enemy;
-	//linkedList<projectile> playerBul;
+	std::list<projectile*> player_bullets;
 };
