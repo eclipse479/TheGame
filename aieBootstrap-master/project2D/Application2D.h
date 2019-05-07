@@ -2,7 +2,6 @@
 #include "Application.h"
 #include "Renderer2D.h"
 #include <iostream>
-#include "dynamicArray.h"
 
 class game_object;
 class button;
@@ -45,6 +44,5 @@ protected:
 	button*			 m_button;
 	score*           m_score;
 	enemyShip*       enemy;
-	//projectile*      p_bullet;
-	dynamicArray<projectile> player_bullets;
+	projectile*      p_bullet;
 };

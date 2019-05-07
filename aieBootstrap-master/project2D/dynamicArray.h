@@ -6,16 +6,16 @@ public:
 	//constructor
 	dynamicArray()
 	{
-		std::cout << "constructor called\n";
-		m_data = new T[baseCapacity]; // ->pointer to the array
-		count = 0;						// -> how much is in use
-		capacity = baseCapacity;		// -> how much memory is allocated
-		//positionX = 0;
-		//positionY = -10;
-		//objectHeight = 0;
-		//objectRadius = 0;
-		//objectTexture = nullptr;
-		//objectWidth = 0;
+		//std::cout << "constructor called\n";
+		//m_data = new T[baseCapacity]; // ->pointer to the array
+		//count = 0;						// -> how much is in use
+		//capacity = baseCapacity;		// -> how much memory is allocated
+		///*positionX = 0;
+		/*positionY = -10;
+		objectHeight = 0;
+		objectRadius = 0;
+		objectTexture = nullptr;
+		objectWidth = 0;*/
 
 	}
 
@@ -74,17 +74,17 @@ public:
 		}
 	}
 
-	void grow()
-	{
-		//capacity *= 2;
-		//T* newLocation = new T[capacity]; // creates new location
-		//for (size_t i = 0; i < count; i++)
-		//{
-		//	newLocation[i] = m_data[i]; // deep copy of the data
-		//}
-		//delete m_data; //delete old storage
-		//m_data = newLocation; // move to new storage
-	};
+//	void grow()
+//	{
+	//	capacity *= 2;
+	//	T* newLocation = new T[capacity]; // creates new location
+	//	for (size_t i = 0; i < count; i++)
+	//	{
+	//		newLocation[i] = m_data[i]; // deep copy of the data
+	//	}
+	//	delete m_data; //delete old storage
+	//	m_data = newLocation; // move to new storage
+	//};
 
 	//add data
 	void push(T num)
@@ -290,11 +290,11 @@ size_t getCount()
 
 
 
-	void player_bullet_update(float deltaTime)
-	{
-		for(int i = 0; i < count ; i++)
-		m_data[i].positionX += deltaTime * 300;
-	}
+	//void player_bullet_update(float deltaTime)
+	//{
+	//	for(int i = 0; i < count ; i++)
+	//	m_data[i].positionX += deltaTime * 300;
+	//}
 
 
 

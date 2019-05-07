@@ -41,7 +41,7 @@ bool Application2D::startup() { // creates things for the game
 	m_score = new score();
 	m_score->scoreStartup();
 
-	//p_bullet = new projectile();
+	p_bullet = new projectile(0, 0, 0, 0, 0, 0, nullptr);
 	m_timer = 0;
 	return true;
 }
@@ -58,10 +58,7 @@ void Application2D::shutdown()
 	delete the_background;
 	delete m_score;
 	delete m_font;	
-	for (int i = 0; i < player_bullets.getCount(); i++)
-	{
-	//delete p_bullet;
-	}
+	delete p_bullet;
 	delete m_2dRenderer;
 }
 
@@ -92,10 +89,9 @@ void Application2D::update(float deltaTime)
 		enemy->update();
 		enemy->spawnEnemy();
 		m_score->scoreBoard(m_2dRenderer);
-		for (int i = 0; i < player_bullets.getCount(); i++)
-		{
-			player_bullets.player_bullet_update(deltaTime);
-		}
+		
+		p_bullet->player_bullet_update(deltaTime);
+		
 		if (enemy->spawnEnemy() && enemy->getSpwanTimer() < 0)
 		{
 			std::cout << "enemy spawned\n";
@@ -108,15 +104,14 @@ void Application2D::update(float deltaTime)
 				m_player->setShooting(false);
 				m_player->setshootingTimer(50);
 				std::cout << "shot fired\n";
-				//p_bullet->setObject(m_player->getPositionX(), m_player->getPositionY(), 40, 40, 12, m_playerBulletSprite);
-				player_bullets.push(*new projectile(m_player->getPositionX(), m_player->getPositionY(),10,10,10,1,m_playerBulletSprite));
-				//m_score->scoreUpdate(2500);
+				p_bullet->setObject(m_player->getPositionX(), m_player->getPositionY(), 40, 40, 12, m_playerBulletSprite);
+				m_score->scoreUpdate(25000);
 			}
 
-		/*if (isColliding(p_bullet, enemy))
+		if (isColliding(p_bullet, enemy))
 		{
 			m_score->scoreUpdate(150);
-		}*/
+		}
 	}
 	
 	
@@ -139,28 +134,22 @@ void Application2D::draw()
 
 	//draw the player
 	m_player->draw(m_2dRenderer);
-	for (int i = 0; i < player_bullets.getCount(); i++)
-	{
-	//p_bullet->draw(m_2dRenderer);
-	}
-	enemy->draw(m_2dRenderer);
 	m_2dRenderer->setRenderColour(1, 0, 0);
 	m_2dRenderer->drawCircle(m_player->getPositionX(), m_player->getPositionY(), m_player->getRadius(),20);
-
+	
+	enemy->draw(m_2dRenderer);
 	m_2dRenderer->setRenderColour(0, 0, 1);
 	m_2dRenderer->drawCircle(enemy->getPositionX(), enemy->getPositionY(), enemy->getRadius(), 20);
 
+	p_bullet->draw(m_2dRenderer);
 	m_2dRenderer->setRenderColour(0, 1, 0);
-	for (int i = 0; i < player_bullets.getCount(); i++)
-	{
-	//m_2dRenderer->drawCircle(p_bullet->getPositionX(), p_bullet->getPositionY(), p_bullet->getRadius(), 10);
-	}
+	m_2dRenderer->drawCircle(p_bullet->getPositionX(), p_bullet->getPositionY(), p_bullet->getRadius(), 10);
+
 
 	if (isColliding(m_player, enemy))
 	{
 		std::cout << "collision\n";
 		m_score->scoreUpdate(-100);
-
 	}
 
 	// output some text, uses the last used colour
