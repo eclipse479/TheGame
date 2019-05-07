@@ -1,6 +1,12 @@
 ﻿  Application2D.cpp
+c:\users\s191188\source\repos\thegame\aiebootstrap-master\project2d\dynamicarray.h(296): error C2248: 'solidObject::positionX': cannot access protected member declared in class 'solidObject'
+  c:\users\s191188\source\repos\thegame\aiebootstrap-master\project2d\solidobject.h(24): note: see declaration of 'solidObject::positionX'
+  c:\users\s191188\source\repos\thegame\aiebootstrap-master\project2d\application2d.h(11): note: see declaration of 'solidObject'
+  c:\users\s191188\source\repos\thegame\aiebootstrap-master\project2d\dynamicarray.h(294): note: while compiling class template member function 'void dynamicArray<projectile>::player_bullet_update(float)'
+  c:\users\s191188\source\repos\thegame\aiebootstrap-master\project2d\application2d.cpp(97): note: see reference to function template instantiation 'void dynamicArray<projectile>::player_bullet_update(float)' being compiled
+  c:\users\s191188\source\repos\thegame\aiebootstrap-master\project2d\application2d.h(49): note: see reference to class template instantiation 'dynamicArray<projectile>' being compiled
   background.cpp
-  player.cpp
-  projectile.cpp
+  button.cpp
+  game_object.cpp
+  main.cpp
   Generating Code...
-  Project2D.vcxproj -> C:\Users\s191188\source\repos\TheGame\aieBootstrap-master\temp\Project2D\x64\Debug\Project2D.exe

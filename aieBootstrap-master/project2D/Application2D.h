@@ -1,9 +1,8 @@
 #pragma once
 #include "Application.h"
 #include "Renderer2D.h"
-#include "linkedList.h"
-#include <list>
 #include <iostream>
+#include "dynamicArray.h"
 
 class game_object;
 class button;
@@ -45,7 +44,7 @@ protected:
 	background*		 m_background;
 	button*			 m_button;
 	score*           m_score;
-	projectile*      p_bullet;
 	enemyShip*       enemy;
-	std::list<projectile*> player_bullets;
+	//projectile*      p_bullet;
+	dynamicArray<projectile> player_bullets;
 };

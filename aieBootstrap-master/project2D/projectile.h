@@ -10,7 +10,7 @@ class player;
 class projectile :	public solidObject
 {
 public:
-	projectile();
+	projectile(float posX, float posY, float width, float height, float radius, int bType, aie::Texture* texture);
 	~projectile();
 	void setBullettype(int bulletType);
 	int getBulletType();
@@ -18,7 +18,6 @@ public:
 protected:
 	
 private:
-	int bulletType;
-	int playerBullet_timer;
+	int bulletType =0;
 };
 

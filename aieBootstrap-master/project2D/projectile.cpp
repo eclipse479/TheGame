@@ -2,8 +2,14 @@
 
 
 
-projectile::projectile()
+projectile::projectile(float posX, float posY, float width, float height, float radius, int bType, aie::Texture* texture)
 {
+	positionX = posX;
+	positionY = posY;
+	objectWidth = width;
+	objectHeight = height;
+	objectRadius = radius;
+	objectTexture = texture;
 }
 
 
@@ -15,6 +21,7 @@ void projectile::setBullettype(int Type)
 {
 	bulletType = Type;
 }
+
 
 
 int projectile::getBulletType()

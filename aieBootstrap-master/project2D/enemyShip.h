@@ -16,6 +16,6 @@ public:
 	void update();
 	bool spawnEnemy();
 private:
-	int spawn_timer = 50;
-	int shooting_timer = 166;
+	int spawn_timer = 100;
+	int shooting_timer = 30;
 };
