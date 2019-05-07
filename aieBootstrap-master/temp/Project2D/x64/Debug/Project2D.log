@@ -1,3 +1,2 @@
 ﻿  Application2D.cpp
-c:\users\s191188\source\repos\thegame\aiebootstrap-master\project2d\application2d.cpp(35): warning C4305: 'argument': truncation from 'double' to 'float'
   Project2D.vcxproj -> C:\Users\s191188\source\repos\TheGame\aieBootstrap-master\temp\Project2D\x64\Debug\Project2D.exe

@@ -1,6 +1,7 @@
 #pragma once
 #include "Application.h"
 #include "Renderer2D.h"
+#include "linkedList.h"
 #include <iostream>
 
 class game_object;
@@ -46,4 +47,5 @@ protected:
 	score*           m_score;
 	projectile*      p_bullet;
 	enemyShip*       enemy;
+	linkedList<projectile> playerBul;
 };

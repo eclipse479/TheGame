@@ -24,7 +24,7 @@ bool Application2D::startup() { // creates things for the game
 	m_2dRenderer = new aie::Renderer2D();
 
 	m_shipTexture = new aie::Texture("../bin/textures/ship.png"); // gets the ship texture/sprite
-	m_enemyBullet = new aie::Texture("../bin/textures/enemyBullet.png"); // gets the texture for the enemies bullets
+	m_enemyBullet = new aie::Texture("../bin/textures/enemyProjectile.png"); // gets the texture for the enemies bullets
 	m_playerBullet = new aie::Texture("../bin/textures/playerProjectile.png"); // gets the texture for the player''s bullets
 	the_background = new aie::Texture("../bin/textures/background.png"); // texture for the background
 
@@ -32,7 +32,7 @@ bool Application2D::startup() { // creates things for the game
 
 
 	m_player = new player();
-	m_player->setObject(200, 360, 50, 50, 25,m_shipTexture, (-3.1415 / 2));
+	m_player->setObject(200, 360, 50, 50, 25,m_shipTexture, (-3.1415f / 2));
 	
 	m_rock = new rock();
 	m_rock->setObject(300, 300, 50, 50, 30,m_enemyBullet);
@@ -42,9 +42,9 @@ bool Application2D::startup() { // creates things for the game
 	m_score = new score();
 	m_score->scoreStartup();
 
+	linkedList<projectile> playerBul;
 
 	p_bullet = new projectile();
-	p_bullet->setObject(100, 100, 35, 35, 10, m_playerBullet);
 	m_timer = 0;
 	return true;
 }
@@ -92,14 +92,18 @@ void Application2D::update(float deltaTime)
 		m_timer += deltaTime;
 		m_score->scoreBoard(m_2dRenderer);
 		p_bullet->player_bullet_update(deltaTime);
-
+		if (isColliding(p_bullet, m_rock))
+		{
+			m_score->scoreUpdate(150);
+		}
 			if (m_player->isShooting() && m_player->shootingTimer()<0)
 			{
 				m_player->setShooting(false);
 				m_player->setshootingTimer(50);
 				std::cout << "shot fired\n";
 				p_bullet->setObject(m_player->getPositionX(), m_player->getPositionY(), 40, 40, 12, m_playerBullet);
-				m_score->scoreUpdate(25000);
+
+				//m_score->scoreUpdate(2500);
 			}
 	}
 	
@@ -122,6 +126,7 @@ void Application2D::draw() {
 	//draw the player
 	m_player->draw(m_2dRenderer);
 	p_bullet->draw(m_2dRenderer);
+	m_rock->draw(m_2dRenderer);
 	m_2dRenderer->setRenderColour(1, 0, 0);
 	m_2dRenderer->drawCircle(m_player->getPositionX(), m_player->getPositionY(), m_player->getRadius(),20);
 

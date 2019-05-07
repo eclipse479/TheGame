@@ -189,6 +189,7 @@
     <ClInclude Include="button.h" />
     <ClInclude Include="enemyShip.h" />
     <ClInclude Include="game_object.h" />
+    <ClInclude Include="linkedList.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="projectile.h" />
     <ClInclude Include="rock.h" />
