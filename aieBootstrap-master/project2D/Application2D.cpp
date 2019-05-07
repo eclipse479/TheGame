@@ -104,7 +104,8 @@ void Application2D::update(float deltaTime)
 				m_player->setShooting(false);
 				m_player->setshootingTimer(50);
 				std::cout << "shot fired\n";
-				p_bullet->setObject(m_player->getPositionX(), m_player->getPositionY(), 40, 40, 12, m_playerBulletSprite);
+				//p_bullet->setObject(m_player->getPositionX(), m_player->getPositionY(), 40, 40, 12, m_playerBulletSprite);
+				m_bullets.push_back(new projectile(m_player->getPositionX(), m_player->getPositionY(), p_bullet->getWidth(), p_bullet->getHeight(), p_bullet->getRadius(), 1, m_playerBulletSprite));
 				m_score->scoreUpdate(25000);
 			}
 
@@ -145,6 +146,9 @@ void Application2D::draw()
 	m_2dRenderer->setRenderColour(0, 1, 0);
 	m_2dRenderer->drawCircle(p_bullet->getPositionX(), p_bullet->getPositionY(), p_bullet->getRadius(), 10);
 
+	for (std::list<projectile*>::iterator iter = m_bullets.begin(); iter != m_bullets.end(); iter++) {
+		(*iter)->draw(m_2dRenderer);
+	}
 
 	if (isColliding(m_player, enemy))
 	{

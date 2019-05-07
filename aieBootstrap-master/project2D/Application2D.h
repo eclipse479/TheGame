@@ -2,7 +2,7 @@
 #include "Application.h"
 #include "Renderer2D.h"
 #include <iostream>
-
+#include <list>
 class game_object;
 class button;
 class player;
@@ -45,4 +45,5 @@ protected:
 	score*           m_score;
 	enemyShip*       enemy;
 	projectile*      p_bullet;
+	std::list<projectile*> m_bullets;
 };
