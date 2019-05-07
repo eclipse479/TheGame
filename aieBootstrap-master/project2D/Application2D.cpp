@@ -42,7 +42,7 @@ bool Application2D::startup() { // creates things for the game
 	m_score = new score();
 	m_score->scoreStartup();
 
-	linkedList<projectile> playerBul;
+	//linkedList<projectile> playerBul;
 
 	p_bullet = new projectile();
 	m_timer = 0;

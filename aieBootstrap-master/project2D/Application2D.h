@@ -47,5 +47,5 @@ protected:
 	score*           m_score;
 	projectile*      p_bullet;
 	enemyShip*       enemy;
-	linkedList<projectile> playerBul;
+	//linkedList<projectile> playerBul;
 };
