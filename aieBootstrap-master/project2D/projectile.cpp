@@ -10,6 +10,7 @@ projectile::projectile(float posX, float posY, float width, float height, float 
 	objectHeight = height;
 	objectRadius = radius;
 	objectTexture = texture;
+	bulletType = bType;
 }
 
 
@@ -31,9 +32,32 @@ int projectile::getBulletType()
 
 void projectile::player_bullet_update(float deltaTime)
 {
-		positionX += deltaTime*300;
+	positionX += deltaTime * 350;
 }
 
+void projectile::enemy_bullet_update(float deltaTime)
+{
+	positionX -= deltaTime * 350;
+}
 
+bool projectile::isAlive()
+{
+	return alive;
+}
 
+void projectile::bulletAliveCheck()
+{
+	if (positionX < -10)
+	{
+		alive = false;
+	}
+	if (positionX > 1300)
+	{
+		alive = false;
+	}
+}
 
+void projectile::setBulletalive(bool change)
+{
+	alive = change;
+}

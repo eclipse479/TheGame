@@ -1,16 +1,16 @@
 #pragma once
 #include "solidObject.h"
 #include "projectile.h"
-class player :	public solidObject
+class player : public solidObject
 {
 public:
-	player();
+	player(float posX, float posY, float width, float height, float radius, aie::Texture* texture, float rotation);
 
 
 	~player();
 
 
-	virtual void update(float deltaTime);
+	virtual void player_update(float deltaTime);
 
 	void setshootingTimer(int timer);
 	int shootingTimer();
@@ -26,6 +26,6 @@ private:
 	float m_speed;
 	int shooting_timer;
 	bool shooting = false;
-	int health = 5000;
+	int health = 5;
 };
 

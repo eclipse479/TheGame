@@ -64,6 +64,14 @@ void score::scoreBoard(aie::Renderer2D* renderer)
 	if (currentScore >= highScore) // if the current score is bigger than the high score
 	{
 		highScore = currentScore;
+	}
+}
+
+void score::saveScore()
+{
+	if (currentScore >= highScore) // if the current score is bigger than the high score
+	{
+		highScore = currentScore;
 		std::fstream fout; // opens a stream for reading
 		fout.open("score.dat", std::ios::out | std::ios::binary); //creates the files
 		if (fout.good()) //if the file opens
@@ -79,9 +87,15 @@ void score::writeScore(aie::Renderer2D* renderer)
 {
 	renderer->setRenderColour(1, 1, 1);
 	sprintf_s(scoring, 32, "SCORE: %i", getScore());
-	renderer->drawText(m_font, scoring, 500, 720 - 32,90);
+	renderer->drawText(m_font, scoring, 500, 720 - 32, 90);
 
 	renderer->setRenderColour(1, 1, 1);
 	sprintf_s(scoring, 32, "HIGH SCORE: %i", getHighScore());
-	renderer->drawText(m_font, scoring, 800, 720 - 32,90);
+	renderer->drawText(m_font, scoring, 800, 720 - 32, 90);
+}
+void score::writeFinalScore(aie::Renderer2D* renderer)
+{
+	renderer->setRenderColour(1, 1, 1);
+	sprintf_s(scoring, 32, "Your score was: %i", getScore());
+	renderer->drawText(m_font, scoring, 450, 350, 1);
 }

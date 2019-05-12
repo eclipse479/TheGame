@@ -3,6 +3,8 @@
 #include "Renderer2D.h"
 #include <iostream>
 #include <list>
+#include <ctime>
+
 class game_object;
 class button;
 class player;
@@ -36,6 +38,7 @@ protected:
 	aie::Texture*       the_background;
 	aie::Texture*       enemySprite;
 	aie::Font*			m_font;
+	aie::Font*          menu_font;
 
 	float m_timer;
 	game_object*	 ship;
@@ -46,4 +49,5 @@ protected:
 	enemyShip*       enemy;
 	projectile*      p_bullet;
 	std::list<projectile*> m_bullets;
+	std::list<enemyShip*>  e_ships;
 };

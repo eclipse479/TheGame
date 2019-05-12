@@ -186,7 +186,6 @@
     <ClInclude Include="Application2D.h" />
     <ClInclude Include="background.h" />
     <ClInclude Include="button.h" />
-    <ClInclude Include="dynamicArray.h" />
     <ClInclude Include="enemyShip.h" />
     <ClInclude Include="game_object.h" />
     <ClInclude Include="player.h" />

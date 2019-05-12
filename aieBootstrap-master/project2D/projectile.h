@@ -7,7 +7,7 @@
 
 class player;
 
-class projectile :	public solidObject
+class projectile : public solidObject
 {
 public:
 	projectile(float posX, float posY, float width, float height, float radius, int bType, aie::Texture* texture);
@@ -15,9 +15,14 @@ public:
 	void setBullettype(int bulletType);
 	int getBulletType();
 	void player_bullet_update(float deltaTime);
+	void enemy_bullet_update(float deltaTime);
+	bool isAlive();
+	void bulletAliveCheck();
+	void setBulletalive(bool change);
 protected:
-	
+
 private:
-	int bulletType =0;
+	int bulletType = 0;
+	bool alive = true;
 };
 

@@ -2,8 +2,16 @@
 #include<iostream>
 
 
-player::player()
-{}
+player::player(float posX, float posY, float width, float height, float radius, aie::Texture* texture, float rotation)
+{
+	positionX = posX;
+	positionY = posY;
+	objectWidth = width;
+	objectHeight = height;
+	objectRadius = radius;
+	objectTexture = texture;
+	objectRotation = rotation;
+}
 
 
 player::~player()
@@ -12,29 +20,33 @@ player::~player()
 
 
 //updating the player+boarder control
-void player::update(float deltaTime) {
+void player::player_update(float deltaTime) {
 	aie::Input* input = aie::Input::getInstance();
-	m_speed = 200;
+	m_speed = 250;
 	if (input->isKeyDown(aie::INPUT_KEY_UP) && positionY >= 720 - (objectHeight / 2))
-	{	}
+	{
+	}
 	else if (input->isKeyDown(aie::INPUT_KEY_UP)) {
 		positionY += m_speed * deltaTime;
 	}
 
 	if (input->isKeyDown(aie::INPUT_KEY_DOWN) && positionY <= 0 + (objectHeight / 2))
-	{}
+	{
+	}
 	else if (input->isKeyDown(aie::INPUT_KEY_DOWN)) {
 		positionY -= m_speed * deltaTime;
 	}
 
 	if (input->isKeyDown(aie::INPUT_KEY_LEFT) && positionX <= 0 + (objectWidth / 2))
-	{	}
+	{
+	}
 	else if (input->isKeyDown(aie::INPUT_KEY_LEFT)) {
 		positionX -= m_speed * deltaTime;
 	}
 
-	if (input->isKeyDown(aie::INPUT_KEY_RIGHT) && positionX >= 1280 - (objectWidth / 2))
-	{	}
+	if (input->isKeyDown(aie::INPUT_KEY_RIGHT) && positionX >= 800 - (objectWidth / 2))
+	{
+	}
 	else if (input->isKeyDown(aie::INPUT_KEY_RIGHT)) {
 		positionX += m_speed * deltaTime;
 	}
@@ -44,7 +56,10 @@ void player::update(float deltaTime) {
 		shooting = true;
 	}
 
-	shooting_timer--;
+	if (shooting_timer > -2)
+	{
+		shooting_timer--;
+	}
 }
 
 void player::setShooting(bool setshooting)
@@ -56,7 +71,6 @@ bool player::isShooting()
 {
 	return shooting;
 }
-
 
 void player::setshootingTimer(int timer)
 {
@@ -70,7 +84,7 @@ int player::shootingTimer()
 
 void player::addHealth(int add)
 {
-	health = +add;
+	health += add;
 }
 
 int player::getHealth()

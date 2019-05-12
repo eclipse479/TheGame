@@ -8,7 +8,7 @@ class solidObject
 public:
 	solidObject();
 	~solidObject();
-	
+
 
 	void setObject(float x, float y, float width, float height, float radius, aie::Texture* texture, float rotation = 0.0f);
 	float getPositionX();

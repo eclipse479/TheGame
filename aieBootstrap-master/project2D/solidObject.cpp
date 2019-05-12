@@ -14,10 +14,6 @@ solidObject::~solidObject()
 {
 }
 
-//bool entity::isAlive()
-//{
-//
-//}
 void solidObject::setObject(float x, float y, float width, float height, float radius, aie::Texture* texture, float rotation)
 {
 	positionX = x;

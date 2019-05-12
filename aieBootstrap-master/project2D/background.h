@@ -3,6 +3,8 @@
 #include "Texture.h"
 #include "Input.h"
 #include "button.h"
+#include "Application.h"
+
 class background
 {
 public:
@@ -10,9 +12,11 @@ public:
 	~background();
 	virtual void update(float deltaTime);
 
-	virtual void draw(aie::Renderer2D*	m_2dRenderer, aie::Texture * texture);
+	virtual void draw(aie::Renderer2D*	m_2dRenderer, aie::Texture * texture, aie::Font * font);
 
 	int getMenu();
+
+	void setMenu(int destination);
 
 protected:
 	button* play_button;

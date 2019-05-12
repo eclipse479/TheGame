@@ -15,17 +15,22 @@ public:
 	int getHighScore();
 	void scoreStartup();
 	void scoreUpdate(int points);
-	
+
 	void writeScore(aie::Renderer2D* renderer);
+	void writeFinalScore(aie::Renderer2D* renderer);
+
+	void saveScore();
 private:
 	aie::Font* m_font;
 	char m_buttonText[64];
 
-		int currentScore = 0;
-		int highScore = 100000;
-		char scoring[50];
+	int currentScore = 0;
+	int highScore = 100000;
+	char scoring[50];
 	float m_posX;
 	float m_posY;
 
 };
+
+
 

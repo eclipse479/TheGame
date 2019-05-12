@@ -74,8 +74,5 @@
     <ClInclude Include="enemyShip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="dynamicArray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

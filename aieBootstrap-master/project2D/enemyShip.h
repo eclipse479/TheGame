@@ -6,16 +6,32 @@
 class enemyShip : public solidObject
 {
 public:
-	enemyShip();
+	enemyShip(float posX, float posY, float width, float height, float radius, aie::Texture* texture);
 
 	~enemyShip();
-
+	//spawning functions
 	void setSpawnTimer(int timer);
 	int getSpwanTimer();
-	void setShootingTimer(int timer);
-	void update();
-	bool spawnEnemy();
+	//shooting functions
+	void restartShootingTimer();
+	void updateShootingTimer();
+	int getShootingTimer();
+	//enemy position functions
+	void enemy_update(float deltaTime);
+	void randomPath();
+	float getPath();
+	float startingY();
+	//enemy spawning
+	void  updateSpawnTimer();
+	//is the enemy alive
+	void enemyAliveCheck();
+	bool isAlive();
+	void setEnemyAlive(bool change);
+
 private:
-	int spawn_timer = 100;
-	int shooting_timer = 30;
+	float startY;
+	int spawn_timer = 250;
+	int shooting_timer = 40;
+	bool alive = true;
+	int path;
 };

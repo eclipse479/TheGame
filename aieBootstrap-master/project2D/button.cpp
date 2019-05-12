@@ -24,7 +24,7 @@ button::button(const char* buttonText, float x, float y, float width, float heig
 
 	left = m_posX - (m_width * 0.5f);
 	right = m_posX + (m_width * 0.5f);
-	bottom = m_posY - (m_height * 0.5f); 
+	bottom = m_posY - (m_height * 0.5f);
 	top = m_posY + (m_height * 0.5f);
 }
 
@@ -49,8 +49,8 @@ bool button::update()
 	mouseX = input->getMouseX();
 	mouseY = input->getMouseY();
 
-	if(mouseX > left && mouseX < right && mouseY > bottom && mouseY < top) 
-{
+	if (mouseX > left && mouseX < right && mouseY > bottom && mouseY < top)
+	{
 		//Return whether the mouse button is clicked while colliding
 		return input->wasMouseButtonPressed(aie::INPUT_MOUSE_BUTTON_LEFT);
 	}
