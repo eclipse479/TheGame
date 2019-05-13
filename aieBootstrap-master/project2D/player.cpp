@@ -23,31 +23,31 @@ player::~player()
 void player::player_update(float deltaTime) {
 	aie::Input* input = aie::Input::getInstance();
 	m_speed = 250;
-	if (input->isKeyDown(aie::INPUT_KEY_UP) && positionY >= 720 - (objectHeight / 2))
+	if (input->isKeyDown(aie::INPUT_KEY_UP) && positionY >= 720 - (objectHeight / 2) || input->isKeyDown(aie::INPUT_KEY_W) && positionY >= 720 - (objectHeight / 2))
 	{
 	}
-	else if (input->isKeyDown(aie::INPUT_KEY_UP)) {
+	else if (input->isKeyDown(aie::INPUT_KEY_UP) || input->isKeyDown(aie::INPUT_KEY_W)) {
 		positionY += m_speed * deltaTime;
 	}
 
-	if (input->isKeyDown(aie::INPUT_KEY_DOWN) && positionY <= 0 + (objectHeight / 2))
+	if (input->isKeyDown(aie::INPUT_KEY_DOWN) && positionY <= 0 + (objectHeight / 2) || input->isKeyDown(aie::INPUT_KEY_S) && positionY <= 0 + (objectHeight / 2))
 	{
 	}
-	else if (input->isKeyDown(aie::INPUT_KEY_DOWN)) {
+	else if (input->isKeyDown(aie::INPUT_KEY_DOWN) || input->isKeyDown(aie::INPUT_KEY_S)) {
 		positionY -= m_speed * deltaTime;
 	}
 
-	if (input->isKeyDown(aie::INPUT_KEY_LEFT) && positionX <= 0 + (objectWidth / 2))
+	if (input->isKeyDown(aie::INPUT_KEY_LEFT) && positionX <= 0 + (objectWidth / 2) || input->isKeyDown(aie::INPUT_KEY_A) && positionX <= 0 + (objectWidth / 2))
 	{
 	}
-	else if (input->isKeyDown(aie::INPUT_KEY_LEFT)) {
+	else if (input->isKeyDown(aie::INPUT_KEY_LEFT) || input->isKeyDown(aie::INPUT_KEY_A)) {
 		positionX -= m_speed * deltaTime;
 	}
 
-	if (input->isKeyDown(aie::INPUT_KEY_RIGHT) && positionX >= 800 - (objectWidth / 2))
+	if (input->isKeyDown(aie::INPUT_KEY_RIGHT) && positionX >= 800 - (objectWidth / 2) || input->isKeyDown(aie::INPUT_KEY_D) && positionX >= 800 - (objectWidth / 2))
 	{
 	}
-	else if (input->isKeyDown(aie::INPUT_KEY_RIGHT)) {
+	else if (input->isKeyDown(aie::INPUT_KEY_RIGHT) || input->isKeyDown(aie::INPUT_KEY_D)) {
 		positionX += m_speed * deltaTime;
 	}
 

@@ -35,6 +35,9 @@ bool Application2D::startup() { // creates things for the game
 
 	enemy = new enemyShip(100, 50, 50, 50, 25, enemySprite);
 
+	heart = new aie::Texture("../bin/textures/heart.png");
+	bones = new aie::Texture("../bin/textures/skullBones.png");
+
 	m_background = new background();
 
 	m_score = new score();
@@ -58,6 +61,8 @@ void Application2D::shutdown()
 	delete the_background;
 	delete m_score;
 	delete m_font;
+	delete heart;
+	delete bones;
 	delete menu_font;
 	delete p_bullet;
 	delete m_2dRenderer;
@@ -246,7 +251,6 @@ void Application2D::draw()
 	{
 		(*iter)->draw(m_2dRenderer);
 	}
-
 	// output some text, uses the last used colour
 	if (m_background->getMenu() == 2) {
 		char fps[32];
@@ -257,7 +261,11 @@ void Application2D::draw()
 		m_2dRenderer->drawText(m_font, "Health left: ", 350, 8);
 		for (float i = 0; i < m_player->getHealth(); i++)
 		{
-			m_2dRenderer->drawText(m_font, "#", 510 + (i * 20), 8);
+			m_2dRenderer->drawSprite(heart, 530 + (i * 40), 20, 50, 50);
+		}
+		for (float i = 0; i < 5 - m_player->getHealth(); i++)
+		{
+			m_2dRenderer->drawSprite(bones, 690 - (i * 40), 20, 30, 30);
 		}
 		m_score->writeScore(m_2dRenderer);
 	}

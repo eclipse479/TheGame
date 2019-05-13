@@ -85,8 +85,8 @@ void background::draw(aie::Renderer2D*	m_2dRenderer, aie::Texture * texture, aie
 		m_2dRenderer->setRenderColour(1, 1, 1, 1.0f);
 		strcpy_s(m_menuText, 64, "CONTROLS");
 		m_2dRenderer->drawText(font, m_menuText, 590, 550);
-		strcpy_s(m_menuText, 64, "The arrow keys control movement");
-		m_2dRenderer->drawText(font, m_menuText, 430, 500);
+		strcpy_s(m_menuText, 64, "The arrow or WASD keys control movement");
+		m_2dRenderer->drawText(font, m_menuText, 380, 500);
 		strcpy_s(m_menuText, 64, "The space bar controls shooting");
 		m_2dRenderer->drawText(font, m_menuText, 430, 450);
 		strcpy_s(m_menuText, 64, "Be warned you will only have 5 lives");
