@@ -2,7 +2,7 @@
 #include <iostream>
 #include <ctime>
 
-enemyShip::enemyShip(float posX, float posY, float width, float height, float radius, aie::Texture* texture)
+enemyShip::enemyShip(float posX, float posY, float width, float height, float radius, aie::Texture* texture, int newPath)
 {
 	positionX = posX;
 	positionY = posY;
@@ -10,6 +10,7 @@ enemyShip::enemyShip(float posX, float posY, float width, float height, float ra
 	objectHeight = height;
 	objectRadius = radius;
 	objectTexture = texture;
+	path = newPath;
 }
 
 enemyShip::~enemyShip()
@@ -40,14 +41,14 @@ float enemyShip::getPath()
 }
 void enemyShip::randomPath()
 {
-	//srand((unsigned int)time(NULL));
 	path = rand() % 4;
+
 }
 
 
-void enemyShip::restartShootingTimer()
+void enemyShip::restartShootingTimer(int timer)
 {
-	shooting_timer = (rand() % 30) + 30;
+	shooting_timer = (rand()%timer) + timer;
 }
 int enemyShip::getShootingTimer()
 {

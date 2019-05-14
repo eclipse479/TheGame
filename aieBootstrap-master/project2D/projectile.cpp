@@ -2,7 +2,7 @@
 
 
 
-projectile::projectile(float posX, float posY, float width, float height, float radius, int bType, aie::Texture* texture)
+projectile::projectile(float posX, float posY, float width, float height, float radius, int bType, aie::Texture* texture, float rotation)
 {
 	positionX = posX;
 	positionY = posY;
@@ -11,6 +11,7 @@ projectile::projectile(float posX, float posY, float width, float height, float 
 	objectRadius = radius;
 	objectTexture = texture;
 	bulletType = bType;
+	objectRotation = rotation;
 }
 
 
@@ -30,14 +31,29 @@ int projectile::getBulletType()
 	return bulletType;
 }
 
-void projectile::player_bullet_update(float deltaTime)
+void projectile::bullet_update(float deltaTime)
 {
-	positionX += deltaTime * 350;
-}
-
-void projectile::enemy_bullet_update(float deltaTime)
-{
-	positionX -= deltaTime * 350;
+	if (bulletType == 1) {
+		positionX += deltaTime * 350;
+	}
+	else if (bulletType == 2)
+	{
+		positionX -= deltaTime * 350;
+	}
+	else if (bulletType == 3)
+	{
+		positionX -= deltaTime * 150;
+	}
+	else if (bulletType == 4)
+	{
+		positionX -= deltaTime * 350;
+		positionY += deltaTime * 50;
+	}
+	else if (bulletType == 5)
+	{
+		positionX -= deltaTime * 350;
+		positionY -= deltaTime * 50;
+	}
 }
 
 bool projectile::isAlive()

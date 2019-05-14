@@ -25,15 +25,17 @@ bool Application2D::startup() { // creates things for the game
 	m_shipTexture = new aie::Texture("../bin/textures/ship.png"); // gets the ship texture/sprite
 	m_enemyBulletSprite = new aie::Texture("../bin/textures/enemyProjectile.png"); // gets the texture for the enemies bullets
 	m_playerBulletSprite = new aie::Texture("../bin/textures/playerProjectile.png"); // gets the texture for the player''s bullets
+	greyBullet = new aie::Texture("../bin/textures/greyProjectile.png");
+	greenBullet = new aie::Texture("../bin/textures/greenProjectile.png");
 	the_background = new aie::Texture("../bin/textures/background.png"); // texture for the background
 	enemySprite = new aie::Texture("../bin/textures/enemyShip.png");
 
 	m_font = new aie::Font("../bin/font/ARCADE.ttf", 32);
 	menu_font = new aie::Font("../bin/font/consolas_bold.ttf", 24);
 
-	m_player = new player(200, 360, 50, 50, 25, m_shipTexture, (-3.1415f / 2));
+	m_player = new player(200, 360, 30, 30, 15, m_shipTexture, (-3.1415f / 2));
 
-	enemy = new enemyShip(100, 50, 50, 50, 25, enemySprite);
+	enemy = new enemyShip(100, 50, 40, 40, 20, enemySprite, 1);
 
 	heart = new aie::Texture("../bin/textures/heart.png");
 	bones = new aie::Texture("../bin/textures/skullBones.png");
@@ -56,6 +58,8 @@ void Application2D::shutdown()
 	delete m_shipTexture;
 	delete m_playerBulletSprite;
 	delete m_enemyBulletSprite;
+	delete greyBullet;
+	delete greenBullet;
 	delete enemySprite;
 	delete m_background;
 	delete the_background;
@@ -124,11 +128,11 @@ void Application2D::update(float deltaTime)
 		for (std::list<projectile*>::iterator iter = m_bullets.begin(); iter != m_bullets.end();)//handles bullets movement and collisions
 		{
 			projectile* bullet = *iter;
+					bullet->bullet_update(deltaTime); // updates the bullets position
 			if (bullet->isAlive()) {
 				//check bullet against the player
 				if (bullet->getBulletType() == 1)
 				{
-					bullet->player_bullet_update(deltaTime); // updates the bullets position
 					//------------------------------------IF A BULLET COLLIDES WITH AN ENEMY SHIP----------------------
 					for (std::list<enemyShip*>::iterator iter = e_ships.begin(); iter != e_ships.end(); iter++)//handles bullets movement and collisions
 					{
@@ -144,9 +148,8 @@ void Application2D::update(float deltaTime)
 					}
 
 				}
-				else if (bullet->getBulletType() == 2) //if enemy bullet
+				else if (bullet->getBulletType() == 2 || bullet->getBulletType() ==3 || bullet->getBulletType() == 4 || bullet->getBulletType() == 5) //if enemy bullet
 				{
-					bullet->enemy_bullet_update(deltaTime);
 					if (isColliding(bullet, m_player))
 					{
 						bullet->setBulletalive(false);//destroys the bullet
@@ -159,10 +162,14 @@ void Application2D::update(float deltaTime)
 			for (std::list<projectile*>::iterator iter = m_bullets.begin(); iter != m_bullets.end();)//handles bullets movement and collisions
 			{
 				projectile* enemyBullet = *iter;
-				if (bullet->getBulletType() == 1 && enemyBullet->getBulletType() == 2 && isColliding(bullet, enemyBullet))
+				if (bullet->getBulletType() == 1 && enemyBullet->getBulletType() == 2 && isColliding(bullet, enemyBullet) ||
+					bullet->getBulletType() == 1 && enemyBullet->getBulletType() == 3 && isColliding(bullet, enemyBullet)||
+					bullet->getBulletType() == 1 && enemyBullet->getBulletType() == 4 && isColliding(bullet, enemyBullet)|| 
+					bullet->getBulletType() == 1 && enemyBullet->getBulletType() == 5 && isColliding(bullet, enemyBullet))
 				{
 					bullet->setBulletalive(false);
 					enemyBullet->setBulletalive(false);
+					m_score->scoreUpdate(5);
 				}
 				iter++;
 			}
@@ -178,15 +185,15 @@ void Application2D::update(float deltaTime)
 				iter++;
 			}
 		} // end of bullet updates
+
 		//------------------------------SPAWNS NEW ENEMIES-------------------------------
 		if (enemy->getSpwanTimer() < 0)//creates a enemy at a random position
 		{
 			enemy->randomPath();
-			e_ships.push_back(new enemyShip((900 + (enemy->getPath() * 100)), enemy->startingY(), enemy->getWidth(), enemy->getHeight(), enemy->getRadius(), enemySprite)); // creates enemies at certain intervals
+			e_ships.push_back(new enemyShip((900 + (enemy->getPath() * 100)), enemy->startingY(), enemy->getWidth(), enemy->getHeight(), enemy->getRadius(), enemySprite, enemy->getPath())); // creates enemies at certain intervals
 			enemy->setSpawnTimer(25);
 			m_score->scoreUpdate(50);
 		}
-
 		//------------------------------CONTROLS THE NEMIES-------------------------
 		for (std::list<enemyShip*>::iterator iter = e_ships.begin(); iter != e_ships.end();)//handlesenemy ship movement and thier shooting timer
 		{
@@ -197,8 +204,38 @@ void Application2D::update(float deltaTime)
 				theEnemy->updateShootingTimer();
 				if (theEnemy->getShootingTimer() < 0)
 				{
-					m_bullets.push_back(new projectile(theEnemy->getPositionX(), theEnemy->getPositionY(), p_bullet->getWidth(), p_bullet->getHeight(), p_bullet->getRadius(), 2, m_enemyBulletSprite)); // creates bullets on space bar press
-					theEnemy->restartShootingTimer();
+					if (theEnemy->getPath() == 0) 
+					{
+						m_bullets.push_back(new projectile(theEnemy->getPositionX(), theEnemy->getPositionY(), p_bullet->getWidth(), p_bullet->getHeight(), p_bullet->getRadius(), 3, greyBullet)); // creates bullets on space bar press
+					}
+					else if (theEnemy->getPath() == 3)
+					{
+						m_bullets.push_back(new projectile(theEnemy->getPositionX(), theEnemy->getPositionY(), p_bullet->getWidth(), p_bullet->getHeight(), p_bullet->getRadius(), 4, greenBullet,(-.25*3.1415f/4))); // creates bullets on space bar press
+
+						m_bullets.push_back(new projectile(theEnemy->getPositionX(), theEnemy->getPositionY(), p_bullet->getWidth(), p_bullet->getHeight(), p_bullet->getRadius(), 5, greenBullet, (.25*3.1415f / 4))); // creates bullets on space bar press
+
+					}
+					else 
+					{
+						m_bullets.push_back(new projectile(theEnemy->getPositionX(), theEnemy->getPositionY(), p_bullet->getWidth(), p_bullet->getHeight(), p_bullet->getRadius(), 2, m_enemyBulletSprite)); // creates bullets on space bar press
+					}
+						if (m_score->getScore() < 50000) 
+					{
+					theEnemy->restartShootingTimer(40);
+					}
+					else if (m_score->getScore() < 100000)
+					{
+						theEnemy->restartShootingTimer(30);			
+					}
+					else if (m_score->getScore() < 150000)
+					{
+						theEnemy->restartShootingTimer(25);		
+					}
+					else if (m_score->getScore() > 250000)
+					{
+						theEnemy->restartShootingTimer(20);
+						std::cout << theEnemy->getShootingTimer() << "\n";
+					}
 				}
 			}
 			theEnemy->enemyAliveCheck();

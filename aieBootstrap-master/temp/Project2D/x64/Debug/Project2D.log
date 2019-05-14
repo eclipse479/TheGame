@@ -1,1 +1,6 @@
-﻿  Project2D.vcxproj -> C:\Users\s191188\source\repos\TheGame\aieBootstrap-master\temp\Project2D\x64\Debug\Project2D.exe
+﻿  Application2D.cpp
+c:\users\s191188\source\repos\thegame\aiebootstrap-master\project2d\application2d.cpp(193): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  enemyShip.cpp
+c:\users\s191188\source\repos\thegame\aiebootstrap-master\project2d\enemyship.cpp(40): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+  Project2D.vcxproj -> C:\Users\s191188\source\repos\TheGame\aieBootstrap-master\temp\Project2D\x64\Debug\Project2D.exe

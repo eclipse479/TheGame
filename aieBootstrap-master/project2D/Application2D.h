@@ -39,6 +39,8 @@ protected:
 	aie::Texture*       enemySprite;
 	aie::Texture*       heart;
 	aie::Texture*       bones;
+	aie::Texture*       greyBullet;
+	aie::Texture*       greenBullet;
 	aie::Font*			m_font;
 	aie::Font*          menu_font;
 

@@ -6,14 +6,14 @@
 class enemyShip : public solidObject
 {
 public:
-	enemyShip(float posX, float posY, float width, float height, float radius, aie::Texture* texture);
+	enemyShip(float posX, float posY, float width, float height, float radius, aie::Texture* texture, int newPath);
 
 	~enemyShip();
 	//spawning functions
 	void setSpawnTimer(int timer);
 	int getSpwanTimer();
 	//shooting functions
-	void restartShootingTimer();
+	void restartShootingTimer(int timer);
 	void updateShootingTimer();
 	int getShootingTimer();
 	//enemy position functions
